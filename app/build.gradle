@@ -1,0 +1,167 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+    id 'kotlin-parcelize'
+    id 'androidx.navigation.safeargs'
+}
+
+android {
+    compileSdk 31
+
+    defaultConfig {
+        applicationId "com.example.android"
+        minSdk 21
+        targetSdk 31
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    flavorDimensions "backend"
+    productFlavors {
+
+
+        production {
+            // Assigns this product flavor to the "version" flavor dimension.
+            // This property is optional if you are using only one dimension.
+            dimension "backend"
+            versionCode 1
+            versionName "1.0.0"
+
+            buildConfigField 'boolean', 'IS_DEVELOPMENT', "false"
+            buildConfigField 'String', 'BASE_URL', "\"https://private-7dd9fe-bayanulquran.apiary-mock.com/\""
+        }
+
+        development {
+
+            dimension "backend"
+            versionCode 1
+            versionName "1.0.0"
+
+            buildConfigField 'boolean', 'IS_DEVELOPMENT', "true"
+            buildConfigField 'String', 'BASE_URL', "\"https://private-7dd9fe-bayanulquran.apiary-mock.com/\""
+        }
+    }
+
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+            returnDefaultValues = true
+        }
+    }
+
+    buildFeatures {
+        viewBinding  true
+    }
+
+
+}
+
+dependencies {
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    def retrofit_version = "2.9.0"
+    def room_version = "2.3.0"
+    def coroutine_version = "1.5.0"
+    def lifecycle_version = "2.3.1"
+    def lifecycle_test_version = "2.1.0"
+
+    //android core and designing
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'androidx.core:core-ktx:1.6.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
+    implementation "androidx.activity:activity-ktx:1.3.1"
+    //material components
+    implementation 'com.google.android.material:material:1.5.0-alpha04'
+
+    //test dependencies
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'androidx.test:runner:1.4.0'
+    testImplementation 'androidx.test:rules:1.4.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.4'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    //robolectic
+    testImplementation 'org.robolectric:robolectric:4.3.1'
+
+    testImplementation "androidx.arch.core:core-testing:$lifecycle_test_version"
+    testImplementation "androidx.test:core:1.4.0"
+    //mockito
+    testImplementation 'org.mockito:mockito-inline:2.8.47'
+    testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.0.0-RC3'
+
+    //coroutine testing
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.0'
+
+    // Assertions
+    testImplementation 'androidx.test.ext:junit:1.1.3'
+
+
+    //DI Hilt
+    implementation "com.google.dagger:hilt-android:2.38.1"
+    kapt "com.google.dagger:hilt-compiler:2.38.1"
+
+
+
+    implementation "androidx.activity:activity-ktx:1.3.1"
+    // ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    // LiveData
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+
+
+    //extension
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+   // implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+
+    //network
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.1")
+    //logging
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+    //coroutine
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"
+    implementation 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2'
+    //Room
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation "androidx.room:room-ktx:$room_version"
+    implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
+
+    //navigation
+    def nav_version = "2.3.5"
+
+    // Kotlin
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+    // Feature module Support
+    implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
+
+    implementation 'com.google.android.material:material:1.4.0'
+    //exoplayer
+    implementation 'com.google.android.exoplayer:exoplayer-core:2.16.1'
+    implementation 'com.google.android.exoplayer:exoplayer-ui:2.16.1'
+}

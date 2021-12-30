@@ -1,0 +1,1870 @@
+{
+  "surahs": [
+    {
+      "id": "0",
+      "name": "000-Introduction",
+      "audios": [
+        {
+          "csurah": "",
+          "fsize": "10813589",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "000-Introduction-01",
+          "link": "000-Introduction-01.mp3"
+        },
+        {
+          "csurah": "",
+          "fsize": "10366400",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "000-Introduction-02",
+          "link": "000-Introduction-02.mp3"
+        },
+        {
+          "csurah": "",
+          "fsize": "10515048",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "000-Introduction-03",
+          "link": "000-Introduction-03.mp3"
+        },
+        {
+          "csurah": "",
+          "fsize": "9130708",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "000-Introduction-04",
+          "link": "000-Introduction-04.mp3"
+        }
+      ]
+    },
+    {
+      "id": "1",
+      "name": "001-AL-FAATIHAH",
+      "audios": [
+        {
+          "csurah": "001-AL-FAATIHAH",
+          "fsize": "7018002",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "001-AL-FAATIHAH",
+          "link": "001-AL-FAATIHAH.mp3"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "002-AL-BAQARAH",
+      "audios": [
+        {
+          "csurah": "002-AL-BAQARAH",
+          "fsize": "13629620",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "002-AL-BAQARAH (001 TO 029)",
+          "link": "002-AL-BAQARAH (001 TO 029).mp3"
+        },
+        {
+          "csurah": "002-AL-BAQARAH",
+          "fsize": "10581287",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "002-AL-BAQARAH (030 TO 046)",
+          "link": "002-AL-BAQARAH (030 TO 046).mp3"
+        },
+        {
+          "csurah": "002-AL-BAQARAH",
+          "fsize": "10496756",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "002-AL-BAQARAH [047 TO 074]",
+          "link": "002-AL-BAQARAH [047 TO 074].mp3"
+        },
+        {
+          "csurah": "002-AL-BAQARAH",
+          "fsize": "10642727",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "002-AL-BAQARAH [075 TO 107]",
+          "link": "002-AL-BAQARAH [075 TO 107].mp3"
+        },
+        {
+          "csurah": "002-AL-BAQARAH",
+          "fsize": "10434740",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "002-AL-BAQARAH [108 TO 141]",
+          "link": "002-AL-BAQARAH [108 TO 141].mp3"
+        },
+        {
+          "csurah": "002-AL-BAQARAH",
+          "fsize": "10498845",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "002-AL-BAQARAH [142 TO 176]",
+          "link": "002-AL-BAQARAH [142 TO 176].mp3"
+        },
+        {
+          "csurah": "002-AL-BAQARAH",
+          "fsize": "10620848",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "002-AL-BAQARAH [177 TO 196]",
+          "link": "002-AL-BAQARAH [177 TO 196].mp3"
+        },
+        {
+          "csurah": "002-AL-BAQARAH",
+          "fsize": "10616239",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "002-AL-BAQARAH [197 TO 228]",
+          "link": "002-AL-BAQARAH [197 TO 228].mp3"
+        },
+        {
+          "csurah": "002-AL-BAQARAH",
+          "fsize": "10759965",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "002-AL-BAQARAH [229 TO 253]",
+          "link": "002-AL-BAQARAH [229 TO 253].mp3"
+        },
+        {
+          "csurah": "002-AL-BAQARAH",
+          "fsize": "18688859",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "002-AL-BAQARAH [254 TO End]",
+          "link": "002-AL-BAQARAH [254 TO End].mp3"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "003-ALE-IMRAN",
+      "audios": [
+        {
+          "csurah": "003-ALE-IMRAN",
+          "fsize": "12623854",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "003-ALE-IMRAN [001 TO 047]",
+          "link": "003-ALE-IMRAN [001 TO 047].mp3"
+        },
+        {
+          "csurah": "003-ALE-IMRAN",
+          "fsize": "10760748",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "003-ALE-IMRAN [048 TO 101]",
+          "link": "003-ALE-IMRAN [048 TO 101].mp3"
+        },
+        {
+          "csurah": "003-ALE-IMRAN",
+          "fsize": "10503860",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "003-ALE-IMRAN [102 TO 151]",
+          "link": "003-ALE-IMRAN [102 TO 151].mp3"
+        },
+        {
+          "csurah": "003-ALE-IMRAN",
+          "fsize": "10740530",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "003-ALE-IMRAN [152 TO End]",
+          "link": "003-ALE-IMRAN [152 TO End].mp3"
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "004-AN-NISAA",
+      "audios": [
+        {
+          "csurah": "004-AN-NISAA",
+          "fsize": "10699779",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "004-AN-NISAA [001 TO 030]",
+          "link": "004-AN-NISAA [001 TO 030].mp3"
+        },
+        {
+          "csurah": "004-AN-NISAA",
+          "fsize": "10582541",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "004-AN-NISAA [031 TO 065]",
+          "link": "004-AN-NISAA [031 TO 065].mp3"
+        },
+        {
+          "csurah": "004-AN-NISAA",
+          "fsize": "10493516",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "004-AN-NISAA [066 TO 100]",
+          "link": "004-AN-NISAA [066 TO 100].mp3"
+        },
+        {
+          "csurah": "004-AN-NISAA",
+          "fsize": "10599140",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "004-AN-NISAA [101 TO 142]",
+          "link": "004-AN-NISAA [101 TO 142].mp3"
+        },
+        {
+          "csurah": "004-AN-NISAA",
+          "fsize": "8756895",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "004-AN-NISAA [143 TO End]",
+          "link": "004-AN-NISAA [143 TO End].mp3"
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "005-AL-MA'IDAH",
+      "audios": [
+        {
+          "csurah": "005-AL-MA'IDAH",
+          "fsize": "12379196",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "005-AL-MA'IDAH [001 TO 043]",
+          "link": "005-AL-MA'IDAH [001 TO 043].mp3"
+        },
+        {
+          "csurah": "005-AL-MA'IDAH",
+          "fsize": "10458092",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "005-AL-MA'IDAH [044 TO 086]",
+          "link": "005-AL-MA'IDAH [044 TO 086].mp3"
+        },
+        {
+          "csurah": "005-AL-MA'IDAH",
+          "fsize": "8903540",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "005-AL-MA'IDAH [087 TO End]",
+          "link": "005-AL-MA'IDAH [087 TO End].mp3"
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "name": "006-AL-AN'AAM",
+      "audios": [
+        {
+          "csurah": "006-AL-AN'AAM",
+          "fsize": "11864474",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "006-AL-AN'AAM [001 TO 049]",
+          "link": "006-AL-AN'AAM [001 TO 049].mp3"
+        },
+        {
+          "csurah": "006-AL-AN'AAM",
+          "fsize": "10293209",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "006-AL-AN'AAM [050 TO 090]",
+          "link": "006-AL-AN'AAM [050 TO 090].mp3"
+        },
+        {
+          "csurah": "006-AL-AN'AAM",
+          "fsize": "10633950",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "006-AL-AN'AAM [091 TO 129]",
+          "link": "006-AL-AN'AAM [091 TO 129].mp3"
+        },
+        {
+          "csurah": "006-AL-AN'AAM",
+          "fsize": "7486247",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "006-AL-AN'AAM [130 TO End]",
+          "link": "006-AL-AN'AAM [130 TO End].mp3"
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "name": "007-AL-A'RAAF",
+      "audios": [
+        {
+          "csurah": "007-AL-A'RAAF",
+          "fsize": "13508768",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "007-AL-A'RAAF [001 TO 058]",
+          "link": "007-AL-A'RAAF [001 TO 058].mp3"
+        },
+        {
+          "csurah": "007-AL-A'RAAF",
+          "fsize": "10442972",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "007-AL-A'RAAF [059 TO 129]",
+          "link": "007-AL-A'RAAF [059 TO 129].mp3"
+        },
+        {
+          "csurah": "007-AL-A'RAAF",
+          "fsize": "10600879",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "007-AL-A'RAAF [130 TO 166]",
+          "link": "007-AL-A'RAAF [130 TO 166].mp3"
+        },
+        {
+          "csurah": "007-AL-A'RAAF",
+          "fsize": "10598058",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "007-AL-A'RAAF [167 TO End]",
+          "link": "007-AL-A'RAAF [167 TO End].mp3"
+        }
+      ]
+    },
+    {
+      "id": "8",
+      "name": "008-AL-ANFAAL",
+      "audios": [
+        {
+          "csurah": "008-AL-ANFAAL",
+          "fsize": "10225813",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "008-AL-ANFAAL [001 TO 040]",
+          "link": "008-AL-ANFAAL [001 TO 040].mp3"
+        },
+        {
+          "csurah": "008-AL-ANFAAL",
+          "fsize": "10669372",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "008-AL-ANFAAL [041 TO End]",
+          "link": "008-AL-ANFAAL [041 TO End].mp3"
+        }
+      ]
+    },
+    {
+      "id": "9",
+      "name": "009-AT-TAUBAH",
+      "audios": [
+        {
+          "csurah": "009-AT-TAUBAH",
+          "fsize": "10585519",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "009-AT-TAUBAH [001 TO 034]",
+          "link": "009-AT-TAUBAH [001 TO 034].mp3"
+        },
+        {
+          "csurah": "009-AT-TAUBAH",
+          "fsize": "9967828",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "009-AT-TAUBAH [035 TO 085]",
+          "link": "009-AT-TAUBAH [035 TO 085].mp3"
+        },
+        {
+          "csurah": "009-AT-TAUBAH",
+          "fsize": "10644608",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "009-AT-TAUBAH [086 TO End]",
+          "link": "009-AT-TAUBAH [086 TO End].mp3"
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "name": "010-YOUNUS",
+      "audios": [
+        {
+          "csurah": "010-YOUNUS",
+          "fsize": "17003648",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "010-YOUNUS",
+          "link": "010-YOUNUS.mp3"
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "name": "011-HUD",
+      "audios": [
+        {
+          "csurah": "011-HUD",
+          "fsize": "20360278",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "011-HUD",
+          "link": "011-HUD.mp3"
+        }
+      ]
+    },
+    {
+      "id": "12",
+      "name": "012-YOUSUF",
+      "audios": [
+        {
+          "csurah": "012-YOUSUF",
+          "fsize": "16693627",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "012-YOUSUF",
+          "link": "012-YOUSUF.mp3"
+        }
+      ]
+    },
+    {
+      "id": "13",
+      "name": "013-AR-RA'AD",
+      "audios": [
+        {
+          "csurah": "013-AR-RA'AD",
+          "fsize": "7336095",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "013-AR-RA'AD",
+          "link": "013-AR-RA'AD.mp3"
+        }
+      ]
+    },
+    {
+      "id": "14",
+      "name": "014-IBRAHEEM",
+      "audios": [
+        {
+          "csurah": "014-IBRAHEEM",
+          "fsize": "9592761",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "014-IBRAHEEM",
+          "link": "014-IBRAHEEM.mp3"
+        }
+      ]
+    },
+    {
+      "id": "15",
+      "name": "015-AL-HIJR",
+      "audios": [
+        {
+          "csurah": "015-AL-HIJR",
+          "fsize": "12673068",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "015-AL-HIJR",
+          "link": "015-AL-HIJR.mp3"
+        }
+      ]
+    },
+    {
+      "id": "16",
+      "name": "016-AN-NAHL",
+      "audios": [
+        {
+          "csurah": "016-AN-NAHL",
+          "fsize": "10354806",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "016-AN-NAHL [001 TO 065]",
+          "link": "016-AN-NAHL [001 TO 065].mp3"
+        },
+        {
+          "csurah": "016-AN-NAHL",
+          "fsize": "10689121",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "016-AN-NAHL [066 TO End]",
+          "link": "016-AN-NAHL [066 TO End].mp3"
+        }
+      ]
+    },
+    {
+      "id": "17",
+      "name": "017-BANI ISRAIL",
+      "audios": [
+        {
+          "csurah": "017-BANI ISRAIL",
+          "fsize": "10549627",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "017-BANI ISRAIL [001 TO 035]",
+          "link": "017-BANI ISRAIL [001 TO 035].mp3"
+        },
+        {
+          "csurah": "017-BANI ISRAIL",
+          "fsize": "14381790",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "017-BANI ISRAIL [036 TO End]",
+          "link": "017-BANI ISRAIL [036 TO End].mp3"
+        }
+      ]
+    },
+    {
+      "id": "18",
+      "name": "018-AL-KAHEF",
+      "audios": [
+        {
+          "csurah": "018-AL-KAHEF",
+          "fsize": "23833519",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "018-AL-KAHEF",
+          "link": "018-AL-KAHEF.mp3"
+        }
+      ]
+    },
+    {
+      "id": "19",
+      "name": "019-MARYAM",
+      "audios": [
+        {
+          "csurah": "019-MARYAM",
+          "fsize": "11873095",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "019-MARYAM",
+          "link": "019-MARYAM.mp3"
+        }
+      ]
+    },
+    {
+      "id": "20",
+      "name": "020-TAA HAA",
+      "audios": [
+        {
+          "csurah": "020-TAA HAA",
+          "fsize": "12416494",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "020-TAA HAA",
+          "link": "020-TAA HAA.mp3"
+        }
+      ]
+    },
+    {
+      "id": "21",
+      "name": "021-AL-AMBIA",
+      "audios": [
+        {
+          "csurah": "021-AL-AMBIA",
+          "fsize": "14180543",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "021-AL-AMBIA",
+          "link": "021-AL-AMBIA.mp3"
+        }
+      ]
+    },
+    {
+      "id": "22",
+      "name": "022-AL-HAJJ",
+      "audios": [
+        {
+          "csurah": "022-AL-HAJJ",
+          "fsize": "18468177",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "022-AL-HAJJ",
+          "link": "022-AL-HAJJ.mp3"
+        }
+      ]
+    },
+    {
+      "id": "23",
+      "name": "023-AL-MO'MINOON",
+      "audios": [
+        {
+          "csurah": "023-AL-MO'MINOON",
+          "fsize": "11304775",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "023-AL-MO'MINOON",
+          "link": "023-AL-MO'MINOON.mp3"
+        }
+      ]
+    },
+    {
+      "id": "24",
+      "name": "024-AN-NOOR",
+      "audios": [
+        {
+          "csurah": "024-AN-NOOR",
+          "fsize": "11864422",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "024-AN-NOOR",
+          "link": "024-AN-NOOR.mp3"
+        }
+      ]
+    },
+    {
+      "id": "25",
+      "name": "025-AL-FURQAN",
+      "audios": [
+        {
+          "csurah": "025-AL-FURQAN",
+          "fsize": "11763067",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "025-AL-FURQAN",
+          "link": "025-AL-FURQAN.mp3"
+        }
+      ]
+    },
+    {
+      "id": "26",
+      "name": "026-AS-SHU'ARAA",
+      "audios": [
+        {
+          "csurah": "026-AS-SHU'ARAA",
+          "fsize": "10986446",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "026-AS-SHU'ARAA",
+          "link": "026-AS-SHU'ARAA.mp3"
+        }
+      ]
+    },
+    {
+      "id": "27",
+      "name": "027-AN-NAML",
+      "audios": [
+        {
+          "csurah": "027-AN-NAML",
+          "fsize": "9613607",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "027-AN-NAML",
+          "link": "027-AN-NAML.mp3"
+        }
+      ]
+    },
+    {
+      "id": "28",
+      "name": "028-AL-QASES",
+      "audios": [
+        {
+          "csurah": "028-AL-QASES",
+          "fsize": "17424951",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "028-AL-QASES",
+          "link": "028-AL-QASES.mp3"
+        }
+      ]
+    },
+    {
+      "id": "29",
+      "name": "029-AL-ANKABOOT",
+      "audios": [
+        {
+          "csurah": "029-AL-ANKABOOT",
+          "fsize": "12828549",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "029-AL-ANKABOOT",
+          "link": "029-AL-ANKABOOT.mp3"
+        }
+      ]
+    },
+    {
+      "id": "30",
+      "name": "030-AR-ROOM",
+      "audios": [
+        {
+          "csurah": "030-AR-ROOM",
+          "fsize": "8241081",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "030-AR-ROOM",
+          "link": "030-AR-ROOM.mp3"
+        }
+      ]
+    },
+    {
+      "id": "31",
+      "name": "031-LUQMAN",
+      "audios": [
+        {
+          "csurah": "031-LUQMAN",
+          "fsize": "7575899",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "031-LUQMAN",
+          "link": "031-LUQMAN.mp3"
+        }
+      ]
+    },
+    {
+      "id": "32",
+      "name": "032-AS-SAJDAH",
+      "audios": [
+        {
+          "csurah": "032-AS-SAJDAH",
+          "fsize": "3729317",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "032-AS-SAJDAH",
+          "link": "032-AS-SAJDAH.mp3"
+        }
+      ]
+    },
+    {
+      "id": "33",
+      "name": "033-AL-AHZAB",
+      "audios": [
+        {
+          "csurah": "033-AL-AHZAB",
+          "fsize": "20920484",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "033-AL-AHZAB",
+          "link": "033-AL-AHZAB.mp3"
+        }
+      ]
+    },
+    {
+      "id": "34",
+      "name": "034-SABA",
+      "audios": [
+        {
+          "csurah": "034-SABA",
+          "fsize": "8676647",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "034-SABA",
+          "link": "034-SABA.mp3"
+        }
+      ]
+    },
+    {
+      "id": "35",
+      "name": "035-FAATIR",
+      "audios": [
+        {
+          "csurah": "035-FAATIR",
+          "fsize": "6133470",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "035-FAATIR",
+          "link": "035-FAATIR.mp3"
+        }
+      ]
+    },
+    {
+      "id": "36",
+      "name": "036-YAA SEEN",
+      "audios": [
+        {
+          "csurah": "036-YAA SEEN",
+          "fsize": "7238450",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "036-YAA SEEN",
+          "link": "036-YAA SEEN.mp3"
+        }
+      ]
+    },
+    {
+      "id": "37",
+      "name": "037-AS-SAFFAAT",
+      "audios": [
+        {
+          "csurah": "037-AS-SAFFAAT",
+          "fsize": "11772314",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "037-AS-SAFFAAT",
+          "link": "037-AS-SAFFAAT.mp3"
+        }
+      ]
+    },
+    {
+      "id": "38",
+      "name": "038-SUAD",
+      "audios": [
+        {
+          "csurah": "038-SUAD",
+          "fsize": "11218257",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "038-SUAD",
+          "link": "038-SUAD.mp3"
+        }
+      ]
+    },
+    {
+      "id": "39",
+      "name": "039-AZ-ZUMAR",
+      "audios": [
+        {
+          "csurah": "039-AZ-ZUMAR",
+          "fsize": "12819929",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "039-AZ-ZUMAR",
+          "link": "039-AZ-ZUMAR.mp3"
+        }
+      ]
+    },
+    {
+      "id": "40",
+      "name": "040-AL-MO'MIN",
+      "audios": [
+        {
+          "csurah": "040-AL-MO'MIN",
+          "fsize": "11483922",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "040-AL-MO'MIN",
+          "link": "040-AL-MO'MIN.mp3"
+        }
+      ]
+    },
+    {
+      "id": "41",
+      "name": "041-HAA MEEM AS-SAJDAH",
+      "audios": [
+        {
+          "csurah": "041-HAA MEEM AS-SAJDAH",
+          "fsize": "9556242",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "041-HAA MEEM AS-SAJDAH",
+          "link": "041-HAA MEEM AS-SAJDAH.mp3"
+        }
+      ]
+    },
+    {
+      "id": "42",
+      "name": "042-AS-SHURA",
+      "audios": [
+        {
+          "csurah": "042-AS-SHURA",
+          "fsize": "12367122",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "042-AS-SHURA",
+          "link": "042-AS-SHURA.mp3"
+        }
+      ]
+    },
+    {
+      "id": "43",
+      "name": "043-AZ-ZUKHRUF",
+      "audios": [
+        {
+          "csurah": "043-AZ-ZUKHRUF",
+          "fsize": "6814482",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "043-AZ-ZUKHRUF",
+          "link": "043-AZ-ZUKHRUF.mp3"
+        }
+      ]
+    },
+    {
+      "id": "44",
+      "name": "044-AD-DUKHAN",
+      "audios": [
+        {
+          "csurah": "044-AD-DUKHAN",
+          "fsize": "4918619",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "044-AD-DUKHAN",
+          "link": "044-AD-DUKHAN.mp3"
+        }
+      ]
+    },
+    {
+      "id": "45",
+      "name": "045-AL-JATHIA",
+      "audios": [
+        {
+          "csurah": "045-AL-JATHIA",
+          "fsize": "5220961",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "045-AL-JATHIA",
+          "link": "045-AL-JATHIA.mp3"
+        }
+      ]
+    },
+    {
+      "id": "46",
+      "name": "046-AL-AHQAAF",
+      "audios": [
+        {
+          "csurah": "046-AL-AHQAAF",
+          "fsize": "7678247",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "046-AL-AHQAAF",
+          "link": "046-AL-AHQAAF.mp3"
+        }
+      ]
+    },
+    {
+      "id": "47",
+      "name": "047-MUHAMMAD",
+      "audios": [
+        {
+          "csurah": "047-MUHAMMAD",
+          "fsize": "8319762",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "047-MUHAMMAD",
+          "link": "047-MUHAMMAD.mp3"
+        }
+      ]
+    },
+    {
+      "id": "48",
+      "name": "048-AL-FAT'H",
+      "audios": [
+        {
+          "csurah": "048-AL-FAT'H",
+          "fsize": "9338695",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "048-AL-FAT'H",
+          "link": "048-AL-FAT'H.mp3"
+        }
+      ]
+    },
+    {
+      "id": "49",
+      "name": "049-AL-HUJURAAT",
+      "audios": [
+        {
+          "csurah": "049-AL-HUJURAAT",
+          "fsize": "6663077",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "049-AL-HUJURAAT",
+          "link": "049-AL-HUJURAAT.mp3"
+        }
+      ]
+    },
+    {
+      "id": "50",
+      "name": "050-QAAF",
+      "audios": [
+        {
+          "csurah": "050-QAAF",
+          "fsize": "7737493",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "050-QAAF",
+          "link": "050-QAAF.mp3"
+        }
+      ]
+    },
+    {
+      "id": "51",
+      "name": "051-AZ-ZARIYAAT",
+      "audios": [
+        {
+          "csurah": "051-AZ-ZARIYAAT",
+          "fsize": "3979622",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "051-AZ-ZARIYAAT",
+          "link": "051-AZ-ZARIYAAT.mp3"
+        }
+      ]
+    },
+    {
+      "id": "52",
+      "name": "052-AT-TOOR",
+      "audios": [
+        {
+          "csurah": "052-AT-TOOR",
+          "fsize": "4166763",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "052-AT-TOOR",
+          "link": "052-AT-TOOR.mp3"
+        }
+      ]
+    },
+    {
+      "id": "53",
+      "name": "053-AN-NAJM",
+      "audios": [
+        {
+          "csurah": "053-AN-NAJM",
+          "fsize": "6540197",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "053-AN-NAJM",
+          "link": "053-AN-NAJM.mp3"
+        }
+      ]
+    },
+    {
+      "id": "54",
+      "name": "054-AL-QAMAR",
+      "audios": [
+        {
+          "csurah": "054-AL-QAMAR",
+          "fsize": "4807965",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "054-AL-QAMAR",
+          "link": "054-AL-QAMAR.mp3"
+        }
+      ]
+    },
+    {
+      "id": "55",
+      "name": "055-AR-RAHMAN",
+      "audios": [
+        {
+          "csurah": "055-AR-RAHMAN",
+          "fsize": "7322146",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "055-AR-RAHMAN",
+          "link": "055-AR-RAHMAN.mp3"
+        }
+      ]
+    },
+    {
+      "id": "56",
+      "name": "056-AL-WAQI'AH",
+      "audios": [
+        {
+          "csurah": "056-AL-WAQI'AH",
+          "fsize": "7285940",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "056-AL-WAQI'AH",
+          "link": "056-AL-WAQI'AH.mp3"
+        }
+      ]
+    },
+    {
+      "id": "57",
+      "name": "057-AL-HADEED",
+      "audios": [
+        {
+          "csurah": "057-AL-HADEED",
+          "fsize": "19026380",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "057-AL-HADEED",
+          "link": "057-AL-HADEED.mp3"
+        }
+      ]
+    },
+    {
+      "id": "58",
+      "name": "058-AL-MUJADILAH",
+      "audios": [
+        {
+          "csurah": "058-AL-MUJADILAH",
+          "fsize": "7452549",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "058-AL-MUJADILAH",
+          "link": "058-AL-MUJADILAH.mp3"
+        }
+      ]
+    },
+    {
+      "id": "59",
+      "name": "059-AL-HASHR",
+      "audios": [
+        {
+          "csurah": "059-AL-HASHR",
+          "fsize": "10279103",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "059-AL-HASHR",
+          "link": "059-AL-HASHR.mp3"
+        }
+      ]
+    },
+    {
+      "id": "60",
+      "name": "060-AL-MUMTAHINAH",
+      "audios": [
+        {
+          "csurah": "060-AL-MUMTAHINAH",
+          "fsize": "5156912",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "060-AL-MUMTAHINAH",
+          "link": "060-AL-MUMTAHINAH.mp3"
+        }
+      ]
+    },
+    {
+      "id": "61",
+      "name": "061-AS-SAFF",
+      "audios": [
+        {
+          "csurah": "061-AS-SAFF",
+          "fsize": "6093812",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "061-AS-SAFF",
+          "link": "061-AS-SAFF.mp3"
+        }
+      ]
+    },
+    {
+      "id": "62",
+      "name": "062-AL-JUMU'AH",
+      "audios": [
+        {
+          "csurah": "062-AL-JUMU'AH",
+          "fsize": "4566476",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "062-AL-JUMU'AH",
+          "link": "062-AL-JUMU'AH.mp3"
+        }
+      ]
+    },
+    {
+      "id": "63",
+      "name": "063-AL-MUNAFIQOON",
+      "audios": [
+        {
+          "csurah": "063-AL-MUNAFIQOON",
+          "fsize": "5088332",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "063-AL-MUNAFIQOON",
+          "link": "063-AL-MUNAFIQOON.mp3"
+        }
+      ]
+    },
+    {
+      "id": "64",
+      "name": "064-AT-TAGHABUN",
+      "audios": [
+        {
+          "csurah": "064-AT-TAGHABUN",
+          "fsize": "5442896",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "064-AT-TAGHABUN",
+          "link": "064-AT-TAGHABUN.mp3"
+        }
+      ]
+    },
+    {
+      "id": "65",
+      "name": "065-AT-TALAAQ",
+      "audios": [
+        {
+          "csurah": "065-AT-TALAAQ",
+          "fsize": "4484151",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "065-AT-TALAAQ",
+          "link": "065-AT-TALAAQ.mp3"
+        }
+      ]
+    },
+    {
+      "id": "66",
+      "name": "066-AT-TAHREEM",
+      "audios": [
+        {
+          "csurah": "066-AT-TAHREEM",
+          "fsize": "4729911",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "066-AT-TAHREEM",
+          "link": "066-AT-TAHREEM.mp3"
+        }
+      ]
+    },
+    {
+      "id": "67",
+      "name": "067-AL-MULK",
+      "audios": [
+        {
+          "csurah": "067-AL-MULK",
+          "fsize": "3727964",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "067-AL-MULK",
+          "link": "067-AL-MULK.mp3"
+        }
+      ]
+    },
+    {
+      "id": "68",
+      "name": "068-AL-QALAM",
+      "audios": [
+        {
+          "csurah": "068-AL-QALAM",
+          "fsize": "4355785",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "068-AL-QALAM",
+          "link": "068-AL-QALAM.mp3"
+        }
+      ]
+    },
+    {
+      "id": "69",
+      "name": "069-AL-HAAQ-QAH",
+      "audios": [
+        {
+          "csurah": "069-AL-HAAQ-QAH",
+          "fsize": "1980200",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "069-AL-HAAQ-QAH",
+          "link": "069-AL-HAAQ-QAH.mp3"
+        }
+      ]
+    },
+    {
+      "id": "70",
+      "name": "070-AL-MA'ARIJ",
+      "audios": [
+        {
+          "csurah": "070-AL-MA'ARIJ",
+          "fsize": "3175328",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "070-AL-MA'ARIJ",
+          "link": "070-AL-MA'ARIJ.mp3"
+        }
+      ]
+    },
+    {
+      "id": "71",
+      "name": "071-NOOH",
+      "audios": [
+        {
+          "csurah": "071-NOOH",
+          "fsize": "2516852",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "071-NOOH",
+          "link": "071-NOOH.mp3"
+        }
+      ]
+    },
+    {
+      "id": "72",
+      "name": "072-AL-JINN",
+      "audios": [
+        {
+          "csurah": "072-AL-JINN",
+          "fsize": "3544040",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "072-AL-JINN",
+          "link": "072-AL-JINN.mp3"
+        }
+      ]
+    },
+    {
+      "id": "73",
+      "name": "073-AL-MUZZAMMIL",
+      "audios": [
+        {
+          "csurah": "073-AL-MUZZAMMIL",
+          "fsize": "2683712",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "073-AL-MUZZAMMIL",
+          "link": "073-AL-MUZZAMMIL.mp3"
+        }
+      ]
+    },
+    {
+      "id": "74",
+      "name": "074-AL-MUDDASSIR",
+      "audios": [
+        {
+          "csurah": "074-AL-MUDDASSIR",
+          "fsize": "5602844",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "074-AL-MUDDASSIR",
+          "link": "074-AL-MUDDASSIR.mp3"
+        }
+      ]
+    },
+    {
+      "id": "75",
+      "name": "075-AL-QIYAAMAH",
+      "audios": [
+        {
+          "csurah": "075-AL-QIYAAMAH",
+          "fsize": "2633708",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "075-AL-QIYAAMAH",
+          "link": "075-AL-QIYAAMAH.mp3"
+        }
+      ]
+    },
+    {
+      "id": "76",
+      "name": "076-AD-DAHR",
+      "audios": [
+        {
+          "csurah": "076-AD-DAHR",
+          "fsize": "2380448",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "076-AD-DAHR",
+          "link": "076-AD-DAHR.mp3"
+        }
+      ]
+    },
+    {
+      "id": "77",
+      "name": "077-AL-MURSALAAT",
+      "audios": [
+        {
+          "csurah": "077-AL-MURSALAAT",
+          "fsize": "2153972",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "077-AL-MURSALAAT",
+          "link": "077-AL-MURSALAAT.mp3"
+        }
+      ]
+    },
+    {
+      "id": "78",
+      "name": "078-AN-NABA",
+      "audios": [
+        {
+          "csurah": "078-AN-NABA",
+          "fsize": "1558784",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "078-AN-NABA",
+          "link": "078-AN-NABA.mp3"
+        }
+      ]
+    },
+    {
+      "id": "79",
+      "name": "079-AN-NAZI'AAT",
+      "audios": [
+        {
+          "csurah": "079-AN-NAZI'AAT",
+          "fsize": "2783828",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "079-AN-NAZI'AAT",
+          "link": "079-AN-NAZI'AAT.mp3"
+        }
+      ]
+    },
+    {
+      "id": "80",
+      "name": "080-ABAS",
+      "audios": [
+        {
+          "csurah": "080-ABAS",
+          "fsize": "2739116",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "080-ABAS",
+          "link": "080-ABAS.mp3"
+        }
+      ]
+    },
+    {
+      "id": "81",
+      "name": "081-AT-TAKWEER",
+      "audios": [
+        {
+          "csurah": "081-AT-TAKWEER",
+          "fsize": "2826762",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "081-AT-TAKWEER",
+          "link": "081-AT-TAKWEER.mp3"
+        }
+      ]
+    },
+    {
+      "id": "82",
+      "name": "082-AL-INFITAAR",
+      "audios": [
+        {
+          "csurah": "082-AL-INFITAAR",
+          "fsize": "1536320",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "082-AL-INFITAAR",
+          "link": "082-AL-INFITAAR.mp3"
+        }
+      ]
+    },
+    {
+      "id": "83",
+      "name": "083-AL-MUTTAFFIFEEN",
+      "audios": [
+        {
+          "csurah": "083-AL-MUTTAFFIFEEN",
+          "fsize": "2278604",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "083-AL-MUTTAFFIFEEN",
+          "link": "083-AL-MUTTAFFIFEEN.mp3"
+        }
+      ]
+    },
+    {
+      "id": "84",
+      "name": "084-AL-INSHIQAAQ",
+      "audios": [
+        {
+          "csurah": "084-AL-INSHIQAAQ",
+          "fsize": "9821542",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "084-AL-INSHIQAAQ",
+          "link": "084-AL-INSHIQAAQ.mp3"
+        }
+      ]
+    },
+    {
+      "id": "85",
+      "name": "085-AL-BUROOJ",
+      "audios": [
+        {
+          "csurah": "085-AL-BUROOJ",
+          "fsize": "1577252",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "085-AL-BUROOJ",
+          "link": "085-AL-BUROOJ.mp3"
+        }
+      ]
+    },
+    {
+      "id": "86",
+      "name": "086-AT-TARIQ",
+      "audios": [
+        {
+          "csurah": "086-AT-TARIQ",
+          "fsize": "693596",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "086-AT-TARIQ",
+          "link": "086-AT-TARIQ.mp3"
+        }
+      ]
+    },
+    {
+      "id": "87",
+      "name": "087-AL-A'LAA",
+      "audios": [
+        {
+          "csurah": "087-AL-A'LAA",
+          "fsize": "3094071",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "087-AL-A'LAA",
+          "link": "087-AL-A'LAA.mp3"
+        }
+      ]
+    },
+    {
+      "id": "88",
+      "name": "088-AL-GHASHIAH",
+      "audios": [
+        {
+          "csurah": "088-AL-GHASHIAH",
+          "fsize": "1770446",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "088-AL-GHASHIAH",
+          "link": "088-AL-GHASHIAH.mp3"
+        }
+      ]
+    },
+    {
+      "id": "89",
+      "name": "089-AL-FAJR",
+      "audios": [
+        {
+          "csurah": "089-AL-FAJR",
+          "fsize": "3068084",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "089-AL-FAJR",
+          "link": "089-AL-FAJR.mp3"
+        }
+      ]
+    },
+    {
+      "id": "90",
+      "name": "090-AL-BALAD",
+      "audios": [
+        {
+          "csurah": "090-AL-BALAD",
+          "fsize": "2177084",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "090-AL-BALAD",
+          "link": "090-AL-BALAD.mp3"
+        }
+      ]
+    },
+    {
+      "id": "91",
+      "name": "091-AS-SHAMS",
+      "audios": [
+        {
+          "csurah": "091-AS-SHAMS",
+          "fsize": "2889020",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "091-AS-SHAMS",
+          "link": "091-AS-SHAMS.mp3"
+        }
+      ]
+    },
+    {
+      "id": "92",
+      "name": "092-AL-LAIL",
+      "audios": [
+        {
+          "csurah": "092-AL-LAIL",
+          "fsize": "3586484",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "092-AL-LAIL",
+          "link": "092-AL-LAIL.mp3"
+        }
+      ]
+    },
+    {
+      "id": "93",
+      "name": "093-AZ-ZUHAA",
+      "audios": [
+        {
+          "csurah": "093-AZ-ZUHAA",
+          "fsize": "1760744",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "093-AZ-ZUHAA",
+          "link": "093-AZ-ZUHAA.mp3"
+        }
+      ]
+    },
+    {
+      "id": "94",
+      "name": "094-AL-INSHIRAH",
+      "audios": [
+        {
+          "csurah": "094-AL-INSHIRAH",
+          "fsize": "1499708",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "094-AL-INSHIRAH",
+          "link": "094-AL-INSHIRAH.mp3"
+        }
+      ]
+    },
+    {
+      "id": "95",
+      "name": "095-AT-TEEN",
+      "audios": [
+        {
+          "csurah": "095-AT-TEEN",
+          "fsize": "1040060",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "095-AT-TEEN",
+          "link": "095-AT-TEEN.mp3"
+        }
+      ]
+    },
+    {
+      "id": "96",
+      "name": "096-AL-ALAQ",
+      "audios": [
+        {
+          "csurah": "096-AL-ALAQ",
+          "fsize": "2173628",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "096-AL-ALAQ",
+          "link": "096-AL-ALAQ.mp3"
+        }
+      ]
+    },
+    {
+      "id": "97",
+      "name": "097-Al-QADR",
+      "audios": [
+        {
+          "csurah": "097-Al-QADR",
+          "fsize": "513128",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "097-Al-QADR",
+          "link": "097-Al-QADR.mp3"
+        }
+      ]
+    },
+    {
+      "id": "98",
+      "name": "098-AL-BAYYINAH",
+      "audios": [
+        {
+          "csurah": "098-AL-BAYYINAH",
+          "fsize": "1546688",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "098-AL-BAYYINAH",
+          "link": "098-AL-BAYYINAH.mp3"
+        }
+      ]
+    },
+    {
+      "id": "99",
+      "name": "099-AZ-ZILZAAL",
+      "audios": [
+        {
+          "csurah": "099-AZ-ZILZAAL",
+          "fsize": "4281911",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "099-AZ-ZILZAAL",
+          "link": "099-AZ-ZILZAAL.mp3"
+        }
+      ]
+    },
+    {
+      "id": "100",
+      "name": "100-AL-ADIAAT",
+      "audios": [
+        {
+          "csurah": "100-AL-ADIAAT",
+          "fsize": "810603",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "100-AL-ADIAAT",
+          "link": "100-AL-ADIAAT.mp3"
+        }
+      ]
+    },
+    {
+      "id": "101",
+      "name": "101-AL-QAAR'IAH",
+      "audios": [
+        {
+          "csurah": "101-AL-QAAR'IAH",
+          "fsize": "1052549",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "101-AL-QAAR'IAH",
+          "link": "101-AL-QAAR'IAH.mp3"
+        }
+      ]
+    },
+    {
+      "id": "102",
+      "name": "102-AT-TAKASUR",
+      "audios": [
+        {
+          "csurah": "102-AT-TAKASUR",
+          "fsize": "648020",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "102-AT-TAKASUR",
+          "link": "102-AT-TAKASUR.mp3"
+        }
+      ]
+    },
+    {
+      "id": "103",
+      "name": "103-AL-ASR",
+      "audios": [
+        {
+          "csurah": "103-AL-ASR",
+          "fsize": "485372",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "103-AL-ASR",
+          "link": "103-AL-ASR.mp3"
+        }
+      ]
+    },
+    {
+      "id": "104",
+      "name": "104-AL-HUMAZAH",
+      "audios": [
+        {
+          "csurah": "104-AL-HUMAZAH",
+          "fsize": "910460",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "104-AL-HUMAZAH",
+          "link": "104-AL-HUMAZAH.mp3"
+        }
+      ]
+    },
+    {
+      "id": "105",
+      "name": "105-AL-FEEL",
+      "audios": [
+        {
+          "csurah": "105-AL-FEEL",
+          "fsize": "1434773",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "105-AL-FEEL",
+          "link": "105-AL-FEEL.mp3"
+        }
+      ]
+    },
+    {
+      "id": "106",
+      "name": "106-QURESH",
+      "audios": [
+        {
+          "csurah": "106-QURESH",
+          "fsize": "1754094",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "106-QURESH",
+          "link": "106-QURESH.mp3"
+        }
+      ]
+    },
+    {
+      "id": "107",
+      "name": "107-AL-MAA'OON",
+      "audios": [
+        {
+          "csurah": "107-AL-MAA'OON",
+          "fsize": "1796726",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "107-AL-MAA'OON",
+          "link": "107-AL-MAA'OON.mp3"
+        }
+      ]
+    },
+    {
+      "id": "108",
+      "name": "108-AL-KAUSER",
+      "audios": [
+        {
+          "csurah": "108-AL-KAUSER",
+          "fsize": "1250662",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "108-AL-KAUSER",
+          "link": "108-AL-KAUSER.mp3"
+        }
+      ]
+    },
+    {
+      "id": "109",
+      "name": "109-AL-KAFIROON",
+      "audios": [
+        {
+          "csurah": "109-AL-KAFIROON",
+          "fsize": "884321",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "109-AL-KAFIROON",
+          "link": "109-AL-KAFIROON.mp3"
+        }
+      ]
+    },
+    {
+      "id": "110",
+      "name": "110-AN-NASR",
+      "audios": [
+        {
+          "csurah": "110-AN-NASR",
+          "fsize": "959344",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "110-AN-NASR",
+          "link": "110-AN-NASR.mp3"
+        }
+      ]
+    },
+    {
+      "id": "111",
+      "name": "111-AL-LAHAB",
+      "audios": [
+        {
+          "csurah": "111-AL-LAHAB",
+          "fsize": "2523975",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "111-AL-LAHAB",
+          "link": "111-AL-LAHAB.mp3"
+        }
+      ]
+    },
+    {
+      "id": "112",
+      "name": "112-AL-IKHLAAS",
+      "audios": [
+        {
+          "csurah": "112-AL-IKHLAAS",
+          "fsize": "1359958",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "112-AL-IKHLAAS",
+          "link": "112-AL-IKHLAAS.mp3"
+        }
+      ]
+    },
+    {
+      "id": "113",
+      "name": "113-AL-FALAQ",
+      "audios": [
+        {
+          "csurah": "113-AL-FALAQ",
+          "fsize": "1312220",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "113-AL-FALAQ",
+          "link": "113-AL-FALAQ.mp3"
+        }
+      ]
+    },
+    {
+      "id": "114",
+      "name": "114-AN-NAAS",
+      "audios": [
+        {
+          "csurah": "114-AN-NAAS",
+          "fsize": "2666972",
+          "downloaded": false,
+          "progress": 0,
+          "fname": "114-AN-NAAS",
+          "link": "114-AN-NAAS.mp3"
+        }
+      ]
+    }
+  ]
+}
