@@ -6,9 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.viewModels
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.android.R
@@ -75,19 +78,27 @@ class HomeFragment : BaseFragment() {
             binding.surahList.adapter = adapter
         }
 
-
         viewModel.isLoading.observe(viewLifecycleOwner, { isLoading ->
             binding.swipeRefreshLayout.isRefreshing = isLoading
         })
 
-
-        viewModel.loadSurahList()
-
         viewModel.audioItems.observe(viewLifecycleOwner, {
             adapter?.setItems(it)
         })
+
+        val navController = findNavController()
+
+        val appBarConfiguration = AppBarConfiguration(navController.graph)
+
+        view.findViewById<Toolbar>(R.id.toolbar)
+            .setupWithNavController(navController, appBarConfiguration)
+
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.loadSurahList(shouldRefresh = false)
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
@@ -102,7 +113,7 @@ class HomeFragment : BaseFragment() {
             }
         })
         binding.swipeRefreshLayout.setOnRefreshListener {
-            viewModel.loadSurahList()
+            viewModel.loadSurahList(shouldRefresh = true)
         }
     }
 

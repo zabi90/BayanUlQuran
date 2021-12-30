@@ -25,10 +25,10 @@ class HomeViewModel @Inject constructor(private val audioRepository: AudioReposi
 
     val audioItems: LiveData<List<AudioItem>> = _audioItems
 
-    fun loadSurahList() {
+    fun loadSurahList(shouldRefresh : Boolean) {
 
         viewModelScope.launch {
-            return@launch audioRepository.loadSurahs()
+            return@launch audioRepository.loadSurahs(shouldRefresh)
                 .onStart {
                     _loading.postValue(true)
                 }.onCompletion {

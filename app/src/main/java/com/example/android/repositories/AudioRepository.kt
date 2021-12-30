@@ -7,9 +7,15 @@ import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class AudioRepository @Inject constructor(private val audioService: AudioService) {
+    var surahList: List<AudioItem> = mutableListOf()
 
-    suspend fun loadSurahs() : Flow<List<AudioItem>> = flow{
-        val feeds = audioService.loadAudio()
-        emit(feeds)
+    suspend fun loadSurahs(shouldRefresh: Boolean): Flow<List<AudioItem>> = flow {
+
+        if (shouldRefresh) {
+            surahList = audioService.loadAudio()
+        } else if (surahList.isEmpty()) {
+            surahList = audioService.loadAudio()
+        }
+        emit(surahList)
     }
 }
