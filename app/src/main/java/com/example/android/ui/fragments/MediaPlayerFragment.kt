@@ -49,6 +49,7 @@ class MediaPlayerFragment : Fragment(), Player.Listener {
     lateinit var forwardImageView : ImageView
     lateinit var rewindImageView : ImageView
     lateinit var closeImageView : ImageView
+    lateinit var stopImageView : ImageView
 
     private val connection = object : ServiceConnection {
         // Called when the connection with the service is established
@@ -92,6 +93,7 @@ class MediaPlayerFragment : Fragment(), Player.Listener {
         forwardImageView = view.findViewById(R.id.forward_image_view)
         rewindImageView = view.findViewById(R.id.rewind_image_view)
         closeImageView = view.findViewById(R.id.close_image_view)
+        stopImageView = view.findViewById(R.id.stop_image)
         return view
     }
 
@@ -118,6 +120,17 @@ class MediaPlayerFragment : Fragment(), Player.Listener {
             }
 
             closeImageView.setOnClickListener {
+                findNavController().popBackStack()
+            }
+            stopImageView.setOnClickListener {
+                exoPlayer?.stop()
+                exoPlayer?.release()
+
+
+                Intent(activity, MediaPlayerService::class.java).also { intent ->
+                    activity?.stopService(intent)
+                }
+
                 findNavController().popBackStack()
             }
         }

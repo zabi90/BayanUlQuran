@@ -68,12 +68,22 @@
             android:layout_height="match_parent">
 
             <ImageView
+                android:id="@+id/stop_image"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="8dp"
+                android:src="@drawable/ic_baseline_stop_24"
+                app:layout_constraintBottom_toBottomOf="@+id/play_checkbox"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintTop_toTopOf="@+id/play_checkbox" />
+
+            <ImageView
                 android:id="@+id/rewind_image_view"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/ic_baseline_fast_rewind"
                 app:layout_constraintBottom_toBottomOf="@+id/play_checkbox"
-                app:layout_constraintEnd_toStartOf="@+id/play_checkbox"
+                app:layout_constraintEnd_toStartOf="@+id/stop_image"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/play_checkbox" />
 
@@ -91,13 +101,14 @@
                 android:id="@+id/play_checkbox"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                android:layout_marginStart="8dp"
                 android:button="@drawable/selector_play_button"
                 android:checked="false"
                 android:src="@drawable/ic_baseline_play_arrow"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/progressBar" />
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/progressBar"
+                app:layout_constraintVertical_bias="0.563" />
 
             <TextView
                 android:id="@+id/total_time_text_view"
@@ -133,6 +144,14 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:progress="40" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.50" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
