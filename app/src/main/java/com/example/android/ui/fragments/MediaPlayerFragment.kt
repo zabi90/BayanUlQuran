@@ -15,18 +15,25 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatCheckBox
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.android.R
+import com.example.android.base.BaseFragment
+import com.example.android.base.BaseViewModel
 import com.example.android.media.service.MediaPlayerService
+import com.example.android.viewmodels.FavouriteViewModel
+import com.example.android.viewmodels.HomeViewModel
+import com.example.android.viewmodels.MediaViewModel
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.util.Util
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.concurrent.TimeUnit
 
-
-class MediaPlayerFragment : Fragment(), Player.Listener {
-
+@AndroidEntryPoint
+class MediaPlayerFragment : BaseFragment(), Player.Listener {
+    private val viewModel: MediaViewModel by viewModels()
     private var exoPlayer: ExoPlayer? = null
     private val handler: Handler = Handler()
     //private var _binding: FragmentMediaPlayerBinding? = null
@@ -42,6 +49,7 @@ class MediaPlayerFragment : Fragment(), Player.Listener {
 
     private val args: MediaPlayerFragmentArgs by navArgs()
     lateinit var playCheckbox: AppCompatCheckBox
+    lateinit var favouriteCheckBox : AppCompatCheckBox
     lateinit var progressBar: ProgressBar
     lateinit var currentTimeTextView: TextView
     lateinit var totalTimeTextView: TextView
@@ -94,6 +102,7 @@ class MediaPlayerFragment : Fragment(), Player.Listener {
         rewindImageView = view.findViewById(R.id.rewind_image_view)
         closeImageView = view.findViewById(R.id.close_image_view)
         stopImageView = view.findViewById(R.id.stop_image)
+        favouriteCheckBox = view.findViewById(R.id.favourite_checkbox)
         return view
     }
 
@@ -133,7 +142,20 @@ class MediaPlayerFragment : Fragment(), Player.Listener {
 
                 findNavController().popBackStack()
             }
+
+            favouriteCheckBox.setOnClickListener {
+                viewModel.insertFavouriteSurahList(args.audioItem)
+            }
+
         }
+    }
+
+    override fun setListeners() {
+
+    }
+
+    override fun setViewModel(): BaseViewModel? {
+       return viewModel
     }
 
     override fun onStart() {

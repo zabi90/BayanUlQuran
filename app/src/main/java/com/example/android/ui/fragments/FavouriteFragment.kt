@@ -6,12 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.example.android.R
+import com.example.android.base.BaseFragment
+import com.example.android.base.BaseViewModel
 import com.example.android.databinding.FragmentFavouriteBinding
 import com.example.android.databinding.FragmentHomeBinding
+import com.example.android.viewmodels.FavouriteViewModel
+import com.example.android.viewmodels.HomeViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -23,7 +29,11 @@ private const val ARG_PARAM2 = "param2"
  * Use the [FavouriteFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class FavouriteFragment : Fragment() {
+@AndroidEntryPoint
+class FavouriteFragment : BaseFragment() {
+
+    private val viewModel: FavouriteViewModel by viewModels()
+
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -33,6 +43,13 @@ class FavouriteFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+    override fun setListeners() {
+
+    }
+
+    override fun setViewModel(): BaseViewModel? {
+        return viewModel
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

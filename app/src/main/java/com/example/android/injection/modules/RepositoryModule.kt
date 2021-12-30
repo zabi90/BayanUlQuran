@@ -1,5 +1,6 @@
 package com.example.android.injection.modules
 
+import com.example.android.database.AppDatabase
 import com.example.android.network.services.AudioService
 import com.example.android.network.services.UserService
 import com.example.android.repositories.AudioRepository
@@ -19,7 +20,7 @@ class RepositoryModule {
     }
 
     @Provides
-    fun getAudioRepository(audioService: AudioService): AudioRepository {
-        return AudioRepository(audioService)
+    fun getAudioRepository(audioService: AudioService, database: AppDatabase): AudioRepository {
+        return AudioRepository(audioService,database)
     }
 }

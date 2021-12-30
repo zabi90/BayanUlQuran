@@ -79,7 +79,7 @@ android {
 dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     def retrofit_version = "2.9.0"
-    def room_version = "2.3.0"
+    def room_version = "2.4.0"
     def coroutine_version = "1.5.0"
     def lifecycle_version = "2.3.1"
     def lifecycle_test_version = "2.1.0"
