@@ -16,6 +16,7 @@ import android.widget.TextView
 import androidx.appcompat.widget.AppCompatCheckBox
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.android.R
@@ -49,15 +50,15 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
 
     private val args: MediaPlayerFragmentArgs by navArgs()
     lateinit var playCheckbox: AppCompatCheckBox
-    lateinit var favouriteCheckBox : AppCompatCheckBox
+    lateinit var favouriteCheckBox: AppCompatCheckBox
     lateinit var progressBar: ProgressBar
     lateinit var currentTimeTextView: TextView
     lateinit var totalTimeTextView: TextView
     lateinit var titleTextView: TextView
-    lateinit var forwardImageView : ImageView
-    lateinit var rewindImageView : ImageView
-    lateinit var closeImageView : ImageView
-    lateinit var stopImageView : ImageView
+    lateinit var forwardImageView: ImageView
+    lateinit var rewindImageView: ImageView
+    lateinit var closeImageView: ImageView
+    lateinit var stopImageView: ImageView
 
     private val connection = object : ServiceConnection {
         // Called when the connection with the service is established
@@ -147,6 +148,12 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
                 viewModel.insertFavouriteSurahList(args.audioItem)
             }
 
+            viewModel.isAudioItemExist(args.audioItem)
+
+            viewModel.isFavourite.observe(viewLifecycleOwner, Observer {
+                favouriteCheckBox.isChecked = it
+            })
+
         }
     }
 
@@ -155,7 +162,7 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
     }
 
     override fun setViewModel(): BaseViewModel? {
-       return viewModel
+        return viewModel
     }
 
     override fun onStart() {
