@@ -38,9 +38,9 @@ class AudioRepository @Inject constructor(
         database.audioDao().delete(audioItem)
     }
 
-//    suspend fun isExist(audioItem: AudioItem): Flow<AudioItem?> = flow {
-//        emit(database.audioDao().isExist(audioItem.id))
-//    }
+    suspend fun isExist(audioItem: AudioItem): Flow<AudioItem?> = flow {
+        emit(database.audioDao().isExist(audioItem.title))
+    }
 
 
 }

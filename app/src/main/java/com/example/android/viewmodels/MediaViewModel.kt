@@ -19,6 +19,8 @@ import javax.inject.Inject
 @HiltViewModel
 class MediaViewModel @Inject constructor(private val audioRepository: AudioRepository) :
     BaseViewModel() {
+
+    public var currentIndex = 0
     private val _isFavourite = MutableLiveData<Boolean>()
 
     val isFavourite: LiveData<Boolean> = _isFavourite
@@ -41,24 +43,25 @@ class MediaViewModel @Inject constructor(private val audioRepository: AudioRepos
     }
 
 
-//    fun isAudioItemExist(audioItem: AudioItem) {
-//        viewModelScope.launch {
-//
-//            return@launch audioRepository.isExist(audioItem)
-//                .onStart {
-//                    _loading.postValue(true)
-//                }.onCompletion {
-//                    _loading.postValue(false)
-//                }
-//                .catch { exception ->
-//                    Timber.d("Error while loading feeds ${exception.message}")
-//                    _errorMessage.postValue(onHandleError(exception))
-//                }.collect {
-//                    if (it != null)
-//                        _isFavourite.postValue(true)
-//                    else
-//                        _isFavourite.postValue(false)
-//                }
-//        }
-//    }
+    fun isAudioItemExist(audioItem: AudioItem) {
+
+        viewModelScope.launch {
+
+            return@launch audioRepository.isExist(audioItem)
+                .onStart {
+                    _loading.postValue(true)
+                }.onCompletion {
+                    _loading.postValue(false)
+                }
+                .catch { exception ->
+                    Timber.d("Error while loading feeds ${exception.message}")
+                    _errorMessage.postValue(onHandleError(exception))
+                }.collect {
+                    if (it != null)
+                        _isFavourite.postValue(true)
+                    else
+                        _isFavourite.postValue(false)
+                }
+        }
+    }
 }

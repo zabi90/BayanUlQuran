@@ -1,6 +1,5 @@
 package com.example.android.database
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -21,6 +20,6 @@ interface AudioItemDao {
     @Delete
     suspend fun delete(audioItem: AudioItem): Int
 
-//    @Query("SELECT * FROM AudioItem WHERE id = :id ")
-//    suspend fun isExist(id: Int) :  AudioItem
+    @Query("SELECT * FROM AudioItem WHERE title = :title ")
+    suspend fun isExist(title: String) :  AudioItem
 }

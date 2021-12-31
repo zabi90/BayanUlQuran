@@ -144,11 +144,11 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
                 findNavController().popBackStack()
             }
 
-//            favouriteCheckBox.setOnClickListener {
-//                viewModel.insertFavouriteSurahList(args.audioItem)
-//            }
-//
-//            viewModel.isAudioItemExist(args.audioItem)
+            favouriteCheckBox.setOnClickListener {
+                viewModel.insertFavouriteSurahList(args.surah.audios[viewModel.currentIndex])
+            }
+
+           viewModel.isAudioItemExist(args.surah.audios[viewModel.currentIndex])
 
             viewModel.isFavourite.observe(viewLifecycleOwner, Observer {
                 favouriteCheckBox.isChecked = it
@@ -180,9 +180,9 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
 
             Handler().postDelayed({
                 exoPlayer = mService?.exoPlayer
-//                val audioItem = args.audioItem
-//                titleTextView.text = audioItem.title
+
                 exoPlayer?.addListener(this@MediaPlayerFragment)
+                exoPlayer?.playWhenReady = true
                 mService?.setMediaItem(args.surah.audios)
 
             }, 1000)
@@ -314,6 +314,11 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
                 progressBar.max = exoPlayer?.duration?.toInt() ?: 0
                 updateProgressBar()
                 playCheckbox.isChecked = true
+                exoPlayer?.let {
+                    viewModel.currentIndex = it.currentMediaItemIndex
+                    val audioItem = args.surah.audios[viewModel.currentIndex]
+                    titleTextView.text = audioItem.title
+                }
             }
 
         }
@@ -327,6 +332,11 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
             progressBar.max = exoPlayer?.duration?.toInt() ?: 0
             updateProgressBar()
             playCheckbox.isChecked = true
+
+            exoPlayer?.let {
+                viewModel.currentIndex = it.currentMediaItemIndex
+            }
+
         } else {
             isPlaying = false
             playCheckbox.isChecked = false
