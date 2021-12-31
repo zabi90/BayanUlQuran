@@ -144,11 +144,11 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
                 findNavController().popBackStack()
             }
 
-            favouriteCheckBox.setOnClickListener {
-                viewModel.insertFavouriteSurahList(args.audioItem)
-            }
-
-            viewModel.isAudioItemExist(args.audioItem)
+//            favouriteCheckBox.setOnClickListener {
+//                viewModel.insertFavouriteSurahList(args.audioItem)
+//            }
+//
+//            viewModel.isAudioItemExist(args.audioItem)
 
             viewModel.isFavourite.observe(viewLifecycleOwner, Observer {
                 favouriteCheckBox.isChecked = it
@@ -180,10 +180,10 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
 
             Handler().postDelayed({
                 exoPlayer = mService?.exoPlayer
-                val audioItem = args.audioItem
-                titleTextView.text = audioItem.title
+//                val audioItem = args.audioItem
+//                titleTextView.text = audioItem.title
                 exoPlayer?.addListener(this@MediaPlayerFragment)
-                mService?.setMediaItem(audioItem)
+                mService?.setMediaItem(args.surah.audios)
 
             }, 1000)
 

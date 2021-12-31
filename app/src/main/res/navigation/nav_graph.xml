@@ -33,7 +33,7 @@
         android:label="Media Player"
         tools:layout="@layout/fragment_media_player" >
         <argument
-            android:name="AudioItem"
-            app:argType="com.example.android.models.AudioItem" />
+            android:name="surah"
+            app:argType="com.example.android.models.Surah" />
     </fragment>
 </navigation>

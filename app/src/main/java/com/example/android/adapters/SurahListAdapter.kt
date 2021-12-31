@@ -9,8 +9,9 @@ import com.example.android.R
 import com.example.android.base.BaseRecyclerAdapter
 import com.example.android.databinding.ItemMediaBinding
 import com.example.android.models.AudioItem
+import com.example.android.models.Surah
 
-class SurahListAdapter (context: Context) : BaseRecyclerAdapter<AudioItem, SurahListAdapter.SurahListHolder>(context) {
+class SurahListAdapter (context: Context) : BaseRecyclerAdapter<Surah, SurahListAdapter.SurahListHolder>(context) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SurahListHolder {
@@ -22,10 +23,10 @@ class SurahListAdapter (context: Context) : BaseRecyclerAdapter<AudioItem, Surah
     }
 
     override fun onBindViewHolder(holder: SurahListHolder, position: Int) {
-       val audioItem: AudioItem = items[position]
-        holder.binding.titleTextView.text = audioItem.title
+       val surah: Surah = items[position]
+        holder.binding.titleTextView.text = surah.title
         holder.binding.root.setOnClickListener {
-            listener?.onItemSelected(audioItem,position,it)
+            listener?.onItemSelected(surah,position,it)
         }
     }
 

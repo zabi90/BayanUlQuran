@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.android.base.BaseViewModel
 import com.example.android.models.AudioItem
+import com.example.android.models.Surah
 import com.example.android.models.User
 import com.example.android.repositories.AudioRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,9 +22,9 @@ class HomeViewModel @Inject constructor(private val audioRepository: AudioReposi
     BaseViewModel() {
 
 
-    private val _audioItems = MutableLiveData<List<AudioItem>>()
+    private val _audioItems = MutableLiveData<List<Surah>>()
 
-    val audioItems: LiveData<List<AudioItem>> = _audioItems
+    val audioItems: LiveData<List<Surah>> = _audioItems
 
     fun loadSurahList(shouldRefresh : Boolean) {
 

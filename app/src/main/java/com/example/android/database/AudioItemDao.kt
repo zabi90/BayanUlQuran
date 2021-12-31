@@ -21,6 +21,6 @@ interface AudioItemDao {
     @Delete
     suspend fun delete(audioItem: AudioItem): Int
 
-    @Query("SELECT * FROM AudioItem WHERE id = :id ")
-    suspend fun isExist(id: Int) :  AudioItem
+//    @Query("SELECT * FROM AudioItem WHERE id = :id ")
+//    suspend fun isExist(id: Int) :  AudioItem
 }

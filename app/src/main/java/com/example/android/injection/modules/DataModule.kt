@@ -3,6 +3,10 @@ package com.example.android.injection.modules
 import android.content.Context
 import androidx.room.Room
 import com.example.android.database.AppDatabase
+import com.example.android.models.Surah
+import com.example.android.utils.getJsonDataFromAsset
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,4 +28,19 @@ class DataModule {
         ).build()
 
     }
+
+
+    @Provides
+    @Singleton
+    fun getSurahList(@ApplicationContext applicationContext: Context): List<Surah> {
+
+        val jsonFileString = getJsonDataFromAsset(applicationContext, "tafheem.json")
+
+        val gson = Gson()
+
+        val listSurahType = object : TypeToken<List<Surah>>() {}.type
+
+        return gson.fromJson(jsonFileString, listSurahType)
+    }
+
 }

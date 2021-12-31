@@ -9,9 +9,8 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 @Entity
 data class AudioItem(
+    @SerializedName("link") val url: String,
     @PrimaryKey
-    @SerializedName("id") val id: Int,
-    @SerializedName("url") val url: String,
-    @SerializedName("title") val title: String,
+    @SerializedName("fname") val title: String,
     val isFavourite: Boolean
 ) : Parcelable

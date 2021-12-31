@@ -47,9 +47,9 @@ class FavouriteFragment : BaseFragment() {
     override fun setListeners() {
         adapter.addListener(object : OnItemSelectListener<AudioItem> {
             override fun onItemSelected(item: AudioItem, position: Int, view: View) {
-                val action =
-                    FavouriteFragmentDirections.actionFavouriteFragmentToMediaPlayerFragment(item)
-                findNavController().navigate(action)
+//                val action =
+//                    FavouriteFragmentDirections.actionFavouriteFragmentToMediaPlayerFragment(item)
+//                findNavController().navigate(action)
             }
 
         })

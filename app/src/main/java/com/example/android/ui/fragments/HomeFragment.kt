@@ -22,6 +22,7 @@ import com.example.android.base.OnItemSelectListener
 import com.example.android.databinding.FragmentHomeBinding
 import com.example.android.extensions.toast
 import com.example.android.models.AudioItem
+import com.example.android.models.Surah
 import com.example.android.viewmodels.HomeViewModel
 import com.example.android.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -106,8 +107,8 @@ class HomeFragment : BaseFragment() {
 
     //region Base class and interface override methods
     override fun setListeners() {
-        adapter?.addListener(object : OnItemSelectListener<AudioItem> {
-            override fun onItemSelected(item: AudioItem, position: Int, view: View) {
+        adapter?.addListener(object : OnItemSelectListener<Surah> {
+            override fun onItemSelected(item: Surah, position: Int, view: View) {
                 val action = HomeFragmentDirections.actionHomeFragmentToMediaPlayerFragment(item)
                 findNavController().navigate(action)
             }

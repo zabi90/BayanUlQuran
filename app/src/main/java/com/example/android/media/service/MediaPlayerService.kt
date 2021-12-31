@@ -23,8 +23,9 @@ class MediaPlayerService : Service() {
     private val binder = LocalBinder()
     var isPlaying: Boolean = false
     var exoPlayer: ExoPlayer? = null
-    var audioItem: AudioItem? = null
 
+
+    var audioItems: List<AudioItem> = mutableListOf()
 
     private lateinit var playerNotificationManager: PlayerNotificationManager
 
@@ -34,11 +35,11 @@ class MediaPlayerService : Service() {
     }
 
 
-    fun setMediaItem(audioItem: AudioItem) {
+    fun setMediaItem(audioItems: List<AudioItem>) {
 
-        if (this.audioItem != audioItem) {
+        if (this.audioItems != audioItems) {
 
-            this.audioItem = audioItem
+            this.audioItems = audioItems
 
             exoPlayer?.let {
 
@@ -47,10 +48,16 @@ class MediaPlayerService : Service() {
                     // it.release()
                 }
                 // Build the media item.
-                val mediaItem: MediaItem =
-                    MediaItem.fromUri(audioItem.url)
-                // Set the media item to be played.
-                it.setMediaItem(mediaItem)
+                audioItems.forEachIndexed { index, audioItem ->
+
+                    val mediaItem: MediaItem =
+                        MediaItem.fromUri("http://download1.quranurdu.com/Bayan%20ul%20Quran%20in%20Urdu%20Dr%20Asrar%20Ahmed/"+audioItem.url)
+
+                    // Set the media item to be played.
+                    it.addMediaItem(mediaItem)
+
+                }
+
                 // Prepare the player.
                 it.prepare()
                 // Start the playback.
@@ -88,7 +95,7 @@ class MediaPlayerService : Service() {
             .setMediaDescriptionAdapter(object :
                 PlayerNotificationManager.MediaDescriptionAdapter {
                 override fun getCurrentContentTitle(player: Player): CharSequence {
-                    return audioItem.title
+                    return audioItems[player.currentMediaItemIndex] .title
                 }
 
                 override fun createCurrentContentIntent(player: Player): PendingIntent? {
@@ -113,7 +120,7 @@ class MediaPlayerService : Service() {
                 }
 
                 override fun getCurrentContentText(player: Player): CharSequence? {
-                    return audioItem.title
+                    return audioItems[player.currentMediaItemIndex].title
                 }
 
                 override fun getCurrentLargeIcon(
