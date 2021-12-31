@@ -7,44 +7,52 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android.R
+import com.example.android.adapters.FavouriteListAdapter
 import com.example.android.base.BaseFragment
 import com.example.android.base.BaseViewModel
+import com.example.android.base.OnItemSelectListener
 import com.example.android.databinding.FragmentFavouriteBinding
 import com.example.android.databinding.FragmentHomeBinding
+import com.example.android.extensions.toast
+import com.example.android.models.AudioItem
 import com.example.android.viewmodels.FavouriteViewModel
 import com.example.android.viewmodels.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import timber.log.Timber
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [FavouriteFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 @AndroidEntryPoint
 class FavouriteFragment : BaseFragment() {
 
-    private val viewModel: FavouriteViewModel by viewModels()
+    private lateinit var adapter: FavouriteListAdapter
 
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private val viewModel: FavouriteViewModel by viewModels()
 
     private var _binding: FragmentFavouriteBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-    override fun setListeners() {
 
+    override fun setListeners() {
+        adapter.addListener(object : OnItemSelectListener<AudioItem> {
+            override fun onItemSelected(item: AudioItem, position: Int, view: View) {
+                val action =
+                    FavouriteFragmentDirections.actionFavouriteFragmentToMediaPlayerFragment(item)
+                findNavController().navigate(action)
+            }
+
+        })
     }
 
     override fun setViewModel(): BaseViewModel? {
@@ -53,10 +61,6 @@ class FavouriteFragment : BaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
     }
 
     override fun onCreateView(
@@ -77,6 +81,27 @@ class FavouriteFragment : BaseFragment() {
         return view
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        context?.let {
+            adapter = FavouriteListAdapter(it)
+            binding.recyclerView.layoutManager = LinearLayoutManager(it)
+            binding.recyclerView.adapter = adapter
+        }
+
+        viewModel.audioItems.observe(viewLifecycleOwner, Observer {
+            if (it.isNotEmpty()) {
+                binding.emptyTextView.visibility = View.GONE
+            } else {
+                binding.emptyTextView.visibility = View.VISIBLE
+            }
+            adapter.setItems(it)
+        })
+
+        viewModel.loadFavouriteSurahList()
+    }
+
     companion object {
         /**
          * Use this factory method to create a new instance of
@@ -90,10 +115,6 @@ class FavouriteFragment : BaseFragment() {
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             FavouriteFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
             }
     }
 }

@@ -24,7 +24,7 @@ class FavouriteViewModel @Inject constructor(private val audioRepository: AudioR
 
     val audioItems: LiveData<List<AudioItem>> = _audioItems
 
-    fun loadFavouriteSurahList(shouldRefresh: Boolean) {
+    fun loadFavouriteSurahList() {
 
         viewModelScope.launch {
             return@launch audioRepository.loadFavourites()

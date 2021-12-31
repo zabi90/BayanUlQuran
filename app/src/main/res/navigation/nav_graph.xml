@@ -22,7 +22,11 @@
         android:id="@+id/favouriteFragment"
         android:name="com.example.android.ui.fragments.FavouriteFragment"
         android:label="Favourite"
-        tools:layout="@layout/fragment_favourite" />
+        tools:layout="@layout/fragment_favourite" >
+        <action
+            android:id="@+id/action_favouriteFragment_to_mediaPlayerFragment"
+            app:destination="@id/mediaPlayerFragment" />
+    </fragment>
     <fragment
         android:id="@+id/mediaPlayerFragment"
         android:name="com.example.android.ui.fragments.MediaPlayerFragment"
