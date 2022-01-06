@@ -14,7 +14,6 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatCheckBox
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -23,8 +22,6 @@ import com.example.android.R
 import com.example.android.base.BaseFragment
 import com.example.android.base.BaseViewModel
 import com.example.android.media.service.MediaPlayerService
-import com.example.android.viewmodels.FavouriteViewModel
-import com.example.android.viewmodels.HomeViewModel
 import com.example.android.viewmodels.MediaViewModel
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.Player
@@ -43,7 +40,7 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
     // onDestroyView.
     // private val binding get() = _binding!!
 
-    public var isPlaying: Boolean = false
+    var isPlaying: Boolean = false
     var mService: MediaPlayerService? = null
     var mBound: Boolean = false
     private var dragging: Boolean = false
@@ -70,6 +67,12 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
             mService = binder.getService()
             mService?.let { mediaPlayerService ->
                 exoPlayer = mediaPlayerService.exoPlayer
+                exoPlayer = mService?.exoPlayer
+
+                exoPlayer?.addListener(this@MediaPlayerFragment)
+                exoPlayer?.playWhenReady = true
+                mService?.setMediaItem(args.surah.audios)
+                viewModel.isAudioItemExist(args.surah.audios[exoPlayer?.currentMediaItemIndex!!])
             }
             mBound = true
         }
@@ -145,10 +148,10 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
             }
 
             favouriteCheckBox.setOnClickListener {
-                viewModel.insertFavouriteSurahList(args.surah.audios[viewModel.currentIndex])
+                viewModel.insertFavouriteSurahList(args.surah.audios[exoPlayer?.currentMediaItemIndex!!])
             }
 
-           viewModel.isAudioItemExist(args.surah.audios[viewModel.currentIndex])
+
 
             viewModel.isFavourite.observe(viewLifecycleOwner, Observer {
                 favouriteCheckBox.isChecked = it
@@ -178,14 +181,15 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
                 Intent(fragmentActivity, MediaPlayerService::class.java)
             )
 
-            Handler().postDelayed({
-                exoPlayer = mService?.exoPlayer
+           // Handler().postDelayed({
+//                exoPlayer = mService?.exoPlayer
+//
+//                exoPlayer?.addListener(this@MediaPlayerFragment)
+//                exoPlayer?.playWhenReady = true
+//                mService?.setMediaItem(args.surah.audios)
+//                viewModel.isAudioItemExist(args.surah.audios[exoPlayer?.currentMediaItemIndex!!])
 
-                exoPlayer?.addListener(this@MediaPlayerFragment)
-                exoPlayer?.playWhenReady = true
-                mService?.setMediaItem(args.surah.audios)
-
-            }, 1000)
+           // }, 1000)
 
 
         }
@@ -318,6 +322,7 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
                     viewModel.currentIndex = it.currentMediaItemIndex
                     val audioItem = args.surah.audios[viewModel.currentIndex]
                     titleTextView.text = audioItem.title
+                    viewModel.isAudioItemExist(args.surah.audios[exoPlayer?.currentMediaItemIndex!!])
                 }
             }
 
@@ -335,6 +340,7 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
 
             exoPlayer?.let {
                 viewModel.currentIndex = it.currentMediaItemIndex
+                viewModel.isAudioItemExist(args.surah.audios[exoPlayer?.currentMediaItemIndex!!])
             }
 
         } else {
