@@ -46,7 +46,9 @@ class MediaPlayerService : Service() {
                 if (it.isPlaying) {
                     it.stop()
                     // it.release()
+                    it.clearMediaItems()
                 }
+
                 // Build the media item.
                 audioItems.forEachIndexed { index, audioItem ->
 

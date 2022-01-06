@@ -23,6 +23,7 @@ import com.example.android.databinding.FragmentFavouriteBinding
 import com.example.android.databinding.FragmentHomeBinding
 import com.example.android.extensions.toast
 import com.example.android.models.AudioItem
+import com.example.android.models.Surah
 import com.example.android.viewmodels.FavouriteViewModel
 import com.example.android.viewmodels.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -47,9 +48,10 @@ class FavouriteFragment : BaseFragment() {
     override fun setListeners() {
         adapter.addListener(object : OnItemSelectListener<AudioItem> {
             override fun onItemSelected(item: AudioItem, position: Int, view: View) {
-//                val action =
-//                    FavouriteFragmentDirections.actionFavouriteFragmentToMediaPlayerFragment(item)
-//                findNavController().navigate(action)
+                val surah = Surah(1,item.title, listOf(item))
+                val action =
+                    FavouriteFragmentDirections.actionFavouriteFragmentToMediaPlayerFragment(surah)
+                findNavController().navigate(action)
             }
 
         })
