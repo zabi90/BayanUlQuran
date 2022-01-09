@@ -15,6 +15,7 @@
             app:destination="@id/mediaPlayerFragment"
             app:enterAnim="@anim/slide_in_bottom"
             app:exitAnim="@anim/nav_default_exit_anim"
+            app:launchSingleTop="false"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/slide_out_bottom" />
     </fragment>
@@ -25,7 +26,8 @@
         tools:layout="@layout/fragment_favourite" >
         <action
             android:id="@+id/action_favouriteFragment_to_mediaPlayerFragment"
-            app:destination="@id/mediaPlayerFragment" />
+            app:destination="@id/mediaPlayerFragment"
+            app:launchSingleTop="false" />
     </fragment>
     <fragment
         android:id="@+id/mediaPlayerFragment"

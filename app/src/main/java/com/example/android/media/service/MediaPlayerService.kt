@@ -22,7 +22,7 @@ class MediaPlayerService : Service() {
 
     private val binder = LocalBinder()
     var isPlaying: Boolean = false
-    var exoPlayer: ExoPlayer? = null
+    lateinit var exoPlayer: ExoPlayer
 
 
     var audioItems: List<AudioItem> = mutableListOf()
@@ -37,37 +37,28 @@ class MediaPlayerService : Service() {
 
     fun setMediaItem(audioItems: List<AudioItem>) {
 
-        if (this.audioItems != audioItems) {
-
+        if (this.audioItems != audioItems ) {
             this.audioItems = audioItems
-
-            exoPlayer?.let {
-
-                if (it.isPlaying) {
-                    it.stop()
-                    // it.release()
-                    it.clearMediaItems()
-                }
-
-                // Build the media item.
-                audioItems.forEachIndexed { index, audioItem ->
-
-                    val mediaItem: MediaItem =
-                        MediaItem.fromUri("http://download1.quranurdu.com/Bayan%20ul%20Quran%20in%20Urdu%20Dr%20Asrar%20Ahmed/"+audioItem.url)
-
-                    // Set the media item to be played.
-                    it.addMediaItem(mediaItem)
-
-                }
-
-                // Prepare the player.
-                it.prepare()
-                // Start the playback.
-                it.play()
+            if (exoPlayer.isPlaying) {
+                exoPlayer.stop()
+                // it.release()
+                exoPlayer.clearMediaItems()
             }
-        }else{
-            exoPlayer?.pause()
-            exoPlayer?.play()
+            // Build the media item.
+            this.audioItems.forEachIndexed { index, audioItem ->
+                val mediaItem: MediaItem =
+                    MediaItem.fromUri("http://download1.quranurdu.com/Bayan%20ul%20Quran%20in%20Urdu%20Dr%20Asrar%20Ahmed/" + audioItem.url)
+                // Set the media item to be played.
+                exoPlayer.addMediaItem(mediaItem)
+            }
+            // Prepare the player.
+            exoPlayer.prepare()
+            // Start the playback.
+            exoPlayer.play()
+
+        } else {
+            exoPlayer.pause()
+            exoPlayer.play()
         }
 
         playerNotificationManager = PlayerNotificationManager.Builder(this, 13, "Media channel")
@@ -97,7 +88,7 @@ class MediaPlayerService : Service() {
             .setMediaDescriptionAdapter(object :
                 PlayerNotificationManager.MediaDescriptionAdapter {
                 override fun getCurrentContentTitle(player: Player): CharSequence {
-                    return audioItems[player.currentMediaItemIndex] .title
+                    return this@MediaPlayerService.audioItems[player.currentMediaItemIndex].title
                 }
 
                 override fun createCurrentContentIntent(player: Player): PendingIntent? {
@@ -122,7 +113,7 @@ class MediaPlayerService : Service() {
                 }
 
                 override fun getCurrentContentText(player: Player): CharSequence? {
-                    return audioItems[player.currentMediaItemIndex].title
+                    return this@MediaPlayerService.audioItems[player.currentMediaItemIndex].title
                 }
 
                 override fun getCurrentLargeIcon(
@@ -149,8 +140,7 @@ class MediaPlayerService : Service() {
 
 
     override fun onDestroy() {
-        exoPlayer?.release()
-        exoPlayer = null
+        exoPlayer.release()
         playerNotificationManager.setPlayer(null)
         super.onDestroy()
     }

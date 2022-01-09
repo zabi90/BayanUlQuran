@@ -27,6 +27,7 @@ import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.util.Util
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 import java.util.concurrent.TimeUnit
 
 @AndroidEntryPoint
@@ -54,12 +55,15 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
     lateinit var titleTextView: TextView
     lateinit var forwardImageView: ImageView
     lateinit var rewindImageView: ImageView
+    lateinit var nextImageView: ImageView
+    lateinit var backImageView: ImageView
     lateinit var closeImageView: ImageView
     lateinit var stopImageView: ImageView
 
     private val connection = object : ServiceConnection {
         // Called when the connection with the service is established
         override fun onServiceConnected(className: ComponentName, service: IBinder) {
+            Timber.d( "Media Player Fragment onServiceConnected")
             // Because we have bound to an explicit
             // service that is running in our own process, we can
             // cast its IBinder to a concrete class and directly access it.
@@ -79,7 +83,8 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
 
         // Called when the connection with the service disconnects unexpectedly
         override fun onServiceDisconnected(className: ComponentName) {
-            //   Log.e(TAG, "onServiceDisconnected")
+             Timber.d( "Media Player Fragment onServiceDisconnected")
+            exoPlayer?.removeListener(this@MediaPlayerFragment)
             mBound = false
         }
     }
@@ -104,6 +109,10 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
         titleTextView = view.findViewById(R.id.title_textView)
         forwardImageView = view.findViewById(R.id.forward_image_view)
         rewindImageView = view.findViewById(R.id.rewind_image_view)
+
+        nextImageView = view.findViewById(R.id.next_image_view)
+        backImageView = view.findViewById(R.id.back_image_view)
+
         closeImageView = view.findViewById(R.id.close_image_view)
         stopImageView = view.findViewById(R.id.stop_image)
         favouriteCheckBox = view.findViewById(R.id.favourite_checkbox)
@@ -151,6 +160,13 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
                 viewModel.insertFavouriteSurahList(args.surah.audios[exoPlayer?.currentMediaItemIndex!!])
             }
 
+            nextImageView.setOnClickListener {
+                exoPlayer?.seekToNextMediaItem()
+            }
+
+            backImageView.setOnClickListener {
+                exoPlayer?.seekToPreviousMediaItem()
+            }
 
 
             viewModel.isFavourite.observe(viewLifecycleOwner, Observer {
@@ -211,6 +227,7 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
     override fun onDetach() {
         super.onDetach()
         handler.removeCallbacks(updateProgressAction)
+        exoPlayer?.removeListener(this@MediaPlayerFragment)
     }
 
 
@@ -297,32 +314,29 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
         when (playbackState) {
             Player.STATE_BUFFERING -> {
                 isPlaying = false
-                // PlaybackStatus.LOADING
                 playCheckbox.isChecked = false
 
             }
             Player.STATE_ENDED -> {
                 isPlaying = false
                 playCheckbox.isChecked = false
-                //  playerServiceEventListener?.onMediaEnded()
-                //  PlaybackStatus.STOPPED
             }
             Player.STATE_IDLE -> {
                 isPlaying = false
                 playCheckbox.isChecked = false
-                //  playerServiceEventListener?.onMediaStopped()
-                //  PlaybackStatus.IDLE
             }
             Player.STATE_READY -> {
                 isPlaying = true
                 progressBar.max = exoPlayer?.duration?.toInt() ?: 0
                 updateProgressBar()
                 playCheckbox.isChecked = true
+
                 exoPlayer?.let {
                     viewModel.currentIndex = it.currentMediaItemIndex
-                    val audioItem = args.surah.audios[viewModel.currentIndex]
+                    val audioItem = args.surah.audios[it.currentMediaItemIndex]
                     titleTextView.text = audioItem.title
                     viewModel.isAudioItemExist(args.surah.audios[exoPlayer?.currentMediaItemIndex!!])
+                    Timber.d("args.surah.audios ${args.surah.audios.size} and it.currentMediaItemIndex ${it.currentMediaItemIndex}")
                 }
             }
 
