@@ -22,6 +22,7 @@ import com.example.android.R
 import com.example.android.base.BaseFragment
 import com.example.android.base.BaseViewModel
 import com.example.android.media.service.MediaPlayerService
+import com.example.android.ui.activities.MainActivity
 import com.example.android.viewmodels.MediaViewModel
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.Player
@@ -60,32 +61,45 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
     lateinit var closeImageView: ImageView
     lateinit var stopImageView: ImageView
 
+    var mediaPlayerFragmentStateListener: MediaPlayerFragmentStateListener? = null
+
     private val connection = object : ServiceConnection {
         // Called when the connection with the service is established
         override fun onServiceConnected(className: ComponentName, service: IBinder) {
-            Timber.d( "Media Player Fragment onServiceConnected")
+            Timber.d("Media Player Fragment onServiceConnected")
             // Because we have bound to an explicit
             // service that is running in our own process, we can
             // cast its IBinder to a concrete class and directly access it.
             val binder = service as MediaPlayerService.LocalBinder
             mService = binder.getService()
             mService?.let { mediaPlayerService ->
+
                 exoPlayer = mediaPlayerService.exoPlayer
                 exoPlayer = mService?.exoPlayer
 
                 exoPlayer?.addListener(this@MediaPlayerFragment)
-                exoPlayer?.playWhenReady = true
-                mService?.setMediaItem(args.surah.audios)
-                viewModel.isAudioItemExist(args.surah.audios[exoPlayer?.currentMediaItemIndex!!])
+
+                if (args.surah.id > -1) {
+
+                    mService?.setMediaItem(args.surah.audios)
+                    viewModel.isAudioItemExist(args.surah.audios[exoPlayer?.currentMediaItemIndex!!])
+                    exoPlayer?.playWhenReady = true
+                } else {
+                    mService?.setMediaItem(mediaPlayerService.audioItems)
+                    viewModel.isAudioItemExist(mediaPlayerService.audioItems[exoPlayer?.currentMediaItemIndex!!])
+                    exoPlayer?.playWhenReady = true
+                }
             }
             mBound = true
+            mediaPlayerFragmentStateListener?.onServiceContected()
         }
 
         // Called when the connection with the service disconnects unexpectedly
         override fun onServiceDisconnected(className: ComponentName) {
-             Timber.d( "Media Player Fragment onServiceDisconnected")
+            Timber.d("Media Player Fragment onServiceDisconnected")
             exoPlayer?.removeListener(this@MediaPlayerFragment)
             mBound = false
+            mediaPlayerFragmentStateListener?.onServiceDisContected()
         }
     }
 
@@ -157,7 +171,10 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
             }
 
             favouriteCheckBox.setOnClickListener {
-                viewModel.insertFavouriteSurahList(args.surah.audios[exoPlayer?.currentMediaItemIndex!!])
+                mService?.let { mediaPlayerService ->
+                    viewModel.insertFavouriteSurahList(mediaPlayerService.audioItems[exoPlayer?.currentMediaItemIndex!!])
+                }
+
             }
 
             nextImageView.setOnClickListener {
@@ -188,7 +205,7 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
         super.onStart()
         activity?.let { fragmentActivity ->
 
-            Intent(activity, MediaPlayerService::class.java).also { intent ->
+            Intent((activity as MainActivity), MediaPlayerService::class.java).also { intent ->
                 activity?.bindService(intent, connection, Context.BIND_AUTO_CREATE)
             }
 
@@ -197,7 +214,7 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
                 Intent(fragmentActivity, MediaPlayerService::class.java)
             )
 
-           // Handler().postDelayed({
+            // Handler().postDelayed({
 //                exoPlayer = mService?.exoPlayer
 //
 //                exoPlayer?.addListener(this@MediaPlayerFragment)
@@ -205,7 +222,7 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
 //                mService?.setMediaItem(args.surah.audios)
 //                viewModel.isAudioItemExist(args.surah.audios[exoPlayer?.currentMediaItemIndex!!])
 
-           // }, 1000)
+            // }, 1000)
 
 
         }
@@ -230,6 +247,12 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
         exoPlayer?.removeListener(this@MediaPlayerFragment)
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if(context is MediaPlayerFragmentStateListener){
+            mediaPlayerFragmentStateListener = context
+        }
+    }
 
     private val updateProgressAction = Runnable {
         updateProgressBar()
@@ -333,10 +356,15 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
 
                 exoPlayer?.let {
                     viewModel.currentIndex = it.currentMediaItemIndex
-                    val audioItem = args.surah.audios[it.currentMediaItemIndex]
-                    titleTextView.text = audioItem.title
-                    viewModel.isAudioItemExist(args.surah.audios[exoPlayer?.currentMediaItemIndex!!])
-                    Timber.d("args.surah.audios ${args.surah.audios.size} and it.currentMediaItemIndex ${it.currentMediaItemIndex}")
+
+                    mService?.let { mediaPlayerService ->
+                        val audioItem = mediaPlayerService.audioItems[it.currentMediaItemIndex]
+                        titleTextView.text = audioItem.title
+                        viewModel.isAudioItemExist(mediaPlayerService.audioItems[exoPlayer?.currentMediaItemIndex!!])
+
+                        Timber.d("args.surah.audios ${mediaPlayerService.audioItems.size} and it.currentMediaItemIndex ${it.currentMediaItemIndex}")
+                    }
+
                 }
             }
 
@@ -353,13 +381,22 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
             playCheckbox.isChecked = true
 
             exoPlayer?.let {
-                viewModel.currentIndex = it.currentMediaItemIndex
-                viewModel.isAudioItemExist(args.surah.audios[exoPlayer?.currentMediaItemIndex!!])
+                mService?.let { mediaPlayerService ->
+                    viewModel.currentIndex = it.currentMediaItemIndex
+                    viewModel.isAudioItemExist(mediaPlayerService.audioItems[exoPlayer?.currentMediaItemIndex!!])
+                }
+
             }
 
         } else {
             isPlaying = false
             playCheckbox.isChecked = false
         }
+    }
+
+    interface MediaPlayerFragmentStateListener {
+        fun onServiceContected()
+        fun onServiceDisContected()
+
     }
 }

@@ -100,6 +100,7 @@ class HomeFragment : BaseFragment() {
         super.onResume()
         viewModel.loadSurahList(shouldRefresh = false)
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

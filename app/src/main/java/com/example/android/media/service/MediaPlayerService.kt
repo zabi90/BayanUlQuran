@@ -12,6 +12,7 @@ import android.os.IBinder
 import androidx.core.app.NotificationCompat
 import com.example.android.R
 import com.example.android.models.AudioItem
+import com.example.android.models.Surah
 import com.example.android.ui.activities.MainActivity
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
@@ -21,11 +22,12 @@ import com.google.android.exoplayer2.ui.PlayerNotificationManager
 class MediaPlayerService : Service() {
 
     private val binder = LocalBinder()
-    var isPlaying: Boolean = false
+
     lateinit var exoPlayer: ExoPlayer
 
-
     var audioItems: List<AudioItem> = mutableListOf()
+
+
 
     private lateinit var playerNotificationManager: PlayerNotificationManager
 
@@ -34,10 +36,10 @@ class MediaPlayerService : Service() {
         exoPlayer = ExoPlayer.Builder(this).build()
     }
 
-
     fun setMediaItem(audioItems: List<AudioItem>) {
 
         if (this.audioItems != audioItems ) {
+
             this.audioItems = audioItems
             if (exoPlayer.isPlaying) {
                 exoPlayer.stop()
