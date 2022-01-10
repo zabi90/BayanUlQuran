@@ -67,6 +67,7 @@ class MainActivity : BaseActivity(), Player.Listener,
             Intent(this, MediaPlayerService::class.java).also { intent ->
                 this.bindService(intent, connection, Context.BIND_AUTO_CREATE)
             }
+            Timber.d("Main Activity : Service bind")
         }
 
     }
@@ -85,6 +86,8 @@ class MainActivity : BaseActivity(), Player.Listener,
         super.onStop()
         if (mBound) {
             unbindService(connection)
+            mBound = false
+            Timber.d("Main Activity : unbindService")
         }
     }
 
@@ -151,6 +154,7 @@ class MainActivity : BaseActivity(), Player.Listener,
                     binding.mediaView.visibility = View.GONE
                     unbindService(connection)
                     mBound = false
+                    Timber.d("Main Activity : Player.STATE_IDLE unbindService ")
                 }
             }
             Player.STATE_READY -> {
