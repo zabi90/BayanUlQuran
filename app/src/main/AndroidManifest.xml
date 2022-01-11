@@ -32,7 +32,17 @@
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
         </receiver>
+
         <service android:name="com.example.android.media.service.MediaPlayerService"/>
+
+        <service android:name="com.example.android.media.service.MediaDownloadService"
+            android:exported="false">
+            <!-- This is needed for Scheduler -->
+            <intent-filter>
+                <action android:name="com.google.android.exoplayer.downloadService.action.RESTART"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

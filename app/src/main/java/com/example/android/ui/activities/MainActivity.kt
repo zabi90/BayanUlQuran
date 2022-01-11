@@ -19,6 +19,7 @@ import com.example.android.base.BaseViewModel
 import com.example.android.databinding.ActivityMainBinding
 import com.example.android.media.service.MediaPlayerService
 import com.example.android.models.Surah
+import com.example.android.ui.fragments.FavouriteFragmentDirections
 import com.example.android.ui.fragments.HomeFragmentDirections
 import com.example.android.ui.fragments.MediaPlayerFragment
 import com.example.android.viewmodels.MainViewModel
@@ -96,9 +97,21 @@ class MainActivity : BaseActivity(), Player.Listener,
     //region Base class and interface override methods
     override fun setListeners() {
         binding.mediaView.setOnClickListener {
-            val surah = Surah(-1, "", listOf())
-            val action = HomeFragmentDirections.actionHomeFragmentToMediaPlayerFragment(surah)
-            navController.navigate(action)
+
+            navController.currentDestination?.let { destination->
+                val surah = Surah(-1, "", listOf())
+                if (destination.label.contentEquals("Bayan ul Quran", ignoreCase = true)) {
+
+
+                    val action = HomeFragmentDirections.actionHomeFragmentToMediaPlayerFragment(surah)
+                    navController.navigate(action)
+
+                }else if(destination.label.contentEquals("Favourite", ignoreCase = true)){
+
+                    val action = FavouriteFragmentDirections.actionFavouriteFragmentToMediaPlayerFragment(surah)
+                    navController.navigate(action)
+                }
+            }
         }
 
         binding.playCheckBox.setOnClickListener {

@@ -4,6 +4,7 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.IBinder
@@ -21,11 +22,14 @@ import androidx.navigation.fragment.navArgs
 import com.example.android.R
 import com.example.android.base.BaseFragment
 import com.example.android.base.BaseViewModel
+import com.example.android.media.service.MediaDownloadService
 import com.example.android.media.service.MediaPlayerService
 import com.example.android.ui.activities.MainActivity
 import com.example.android.viewmodels.MediaViewModel
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.Player
+import com.google.android.exoplayer2.offline.DownloadRequest
+import com.google.android.exoplayer2.offline.DownloadService
 import com.google.android.exoplayer2.util.Util
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -156,6 +160,7 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
             }
 
             closeImageView.setOnClickListener {
+
                 findNavController().popBackStack()
             }
             stopImageView.setOnClickListener {
@@ -361,6 +366,16 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
                         val audioItem = mediaPlayerService.audioItems[it.currentMediaItemIndex]
                         titleTextView.text = audioItem.title
                         viewModel.isAudioItemExist(mediaPlayerService.audioItems[exoPlayer?.currentMediaItemIndex!!])
+                        context?.let { context ->
+
+                            val downloadRequest: DownloadRequest = DownloadRequest.Builder(audioItem.title, Uri.parse(audioItem.url)).build()
+                            DownloadService.sendAddDownload(
+                                context,
+                                MediaDownloadService::class.java,
+                                downloadRequest,
+                                /* foreground= */ true)
+                        }
+
 
                         Timber.d("args.surah.audios ${mediaPlayerService.audioItems.size} and it.currentMediaItemIndex ${it.currentMediaItemIndex}")
                     }
