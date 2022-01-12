@@ -10,6 +10,7 @@ import android.os.Binder
 import android.os.Build
 import android.os.IBinder
 import androidx.core.app.NotificationCompat
+import com.example.android.BuildConfig
 import com.example.android.R
 import com.example.android.models.AudioItem
 import com.example.android.models.Surah
@@ -17,8 +18,19 @@ import com.example.android.ui.activities.MainActivity
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
+import com.google.android.exoplayer2.offline.DownloadManager
 import com.google.android.exoplayer2.ui.PlayerNotificationManager
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
+import com.google.android.exoplayer2.source.DefaultMediaSourceFactory
+import com.google.android.exoplayer2.upstream.DataSource
+import com.google.android.exoplayer2.upstream.DefaultHttpDataSource
 
+import com.google.android.exoplayer2.upstream.cache.CacheDataSource
+import com.google.android.exoplayer2.upstream.cache.SimpleCache
+
+
+@AndroidEntryPoint
 class MediaPlayerService : Service() {
 
     private val binder = LocalBinder()
@@ -28,15 +40,31 @@ class MediaPlayerService : Service() {
     var audioItems: List<AudioItem> = mutableListOf()
 
 
+  @Inject lateinit var myDownloadManager:DownloadManager
+
+  @Inject lateinit var downloadCache : SimpleCache
 
     private lateinit var playerNotificationManager: PlayerNotificationManager
 
     override fun onCreate() {
         super.onCreate()
-        exoPlayer = ExoPlayer.Builder(this).build()
+
+
+        val cacheDataSourceFactory: DataSource.Factory = CacheDataSource.Factory()
+            .setCache(downloadCache)
+            .setUpstreamDataSourceFactory(DefaultHttpDataSource.Factory())
+            .setCacheWriteDataSinkFactory(null) // Disable writing.
+
+
+        exoPlayer = ExoPlayer.Builder(this)
+            .setMediaSourceFactory(
+                DefaultMediaSourceFactory(cacheDataSourceFactory)
+            )
+            .build()
     }
 
     fun setMediaItem(audioItems: List<AudioItem>) {
+
 
         if (this.audioItems != audioItems ) {
 
@@ -48,8 +76,9 @@ class MediaPlayerService : Service() {
             }
             // Build the media item.
             this.audioItems.forEachIndexed { index, audioItem ->
+
                 val mediaItem: MediaItem =
-                    MediaItem.fromUri("http://download1.quranurdu.com/Bayan%20ul%20Quran%20in%20Urdu%20Dr%20Asrar%20Ahmed/" + audioItem.url)
+                    MediaItem.fromUri(BuildConfig.AUDIO_URL + audioItem.url)
                 // Set the media item to be played.
                 exoPlayer.addMediaItem(mediaItem)
             }

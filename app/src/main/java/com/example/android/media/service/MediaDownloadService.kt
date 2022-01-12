@@ -21,47 +21,18 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MediaDownloadService  : DownloadService(312, DEFAULT_FOREGROUND_NOTIFICATION_UPDATE_INTERVAL,"Media Downloader",
     R.string.channel_download_name,R.string.channel_download_description) {
-//
-//    @Inject
-//     var downloadManager: DownloadManager
-//     @Inject
-//     var downloadNotificationHelper: DownloadNotificationHelper
+
+     @Inject  lateinit var myDownloadManager: DownloadManager
+
+     @Inject lateinit var downloadNotificationHelper: DownloadNotificationHelper
 
 
     override fun getDownloadManager(): DownloadManager {
 
-       val databaseProvider = StandaloneDatabaseProvider(applicationContext)
-
-        val downloadExecutor = Executor { obj: Runnable -> obj.run() }
-        // A download cache should not evict media, so should use a NoopCacheEvictor.
-        val downloadCache = SimpleCache(
-            File(applicationContext.getExternalFilesDir(null), "my app"),
-            NoOpCacheEvictor(),
-            databaseProvider
-        )
-
-        // Create a factory for reading the data from the network.
-
-        val dataSourceFactory = DefaultHttpDataSource.Factory()
-        // Create the download manager.
-
-        val  downloadManager = DownloadManager(
-            applicationContext,
-            databaseProvider,
-            downloadCache,
-            dataSourceFactory,
-            downloadExecutor
-        )
-
-        // Optionally, setters can be called to configure the download manager.
-        //downloadManager.setRequirements(requirements);
-        downloadManager.setMaxParallelDownloads(3);
-
-
-        downloadManager.addListener(object : DownloadManager.Listener {
+        myDownloadManager.addListener(object : DownloadManager.Listener {
 
             override fun onDownloadRemoved(downloadManager: DownloadManager, download: Download) {
-                // Toast.makeText(context, "Deleted", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MediaDownloadService, "Deleted", Toast.LENGTH_SHORT).show()
             }
 
             override fun onDownloadsPausedChanged(downloadManager: DownloadManager, downloadsPaused: Boolean) {
@@ -78,12 +49,12 @@ class MediaDownloadService  : DownloadService(312, DEFAULT_FOREGROUND_NOTIFICATI
                 download: Download,
                 finalException: Exception?
             ) {
-
+                Toast.makeText(this@MediaDownloadService, "percentDownloaded ${download.percentDownloaded } , finalException ${finalException?.message} ", Toast.LENGTH_SHORT).show()
             }
 
         })
 
-      return downloadManager
+      return myDownloadManager
     }
 
     override fun getScheduler(): Scheduler? {
@@ -94,7 +65,7 @@ class MediaDownloadService  : DownloadService(312, DEFAULT_FOREGROUND_NOTIFICATI
         downloads: MutableList<Download>,
         notMetRequirements: Int
     ): Notification {
-        val downloadNotificationHelper = DownloadNotificationHelper(applicationContext,"Media Downloader")
+
         return downloadNotificationHelper.buildProgressNotification(this,R.drawable.icon, null, getString(R.string.channel_download_description), downloads)
     }
 }

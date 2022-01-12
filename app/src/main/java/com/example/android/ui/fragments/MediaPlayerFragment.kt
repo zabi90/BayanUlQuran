@@ -19,6 +19,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.android.BuildConfig
 import com.example.android.R
 import com.example.android.base.BaseFragment
 import com.example.android.base.BaseViewModel
@@ -28,23 +29,21 @@ import com.example.android.ui.activities.MainActivity
 import com.example.android.viewmodels.MediaViewModel
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.Player
+import com.google.android.exoplayer2.offline.DownloadManager
 import com.google.android.exoplayer2.offline.DownloadRequest
 import com.google.android.exoplayer2.offline.DownloadService
 import com.google.android.exoplayer2.util.Util
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MediaPlayerFragment : BaseFragment(), Player.Listener {
     private val viewModel: MediaViewModel by viewModels()
     private var exoPlayer: ExoPlayer? = null
     private val handler: Handler = Handler()
-    //private var _binding: FragmentMediaPlayerBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    // private val binding get() = _binding!!
 
     var isPlaying: Boolean = false
     var mService: MediaPlayerService? = null
@@ -54,6 +53,7 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
     private val args: MediaPlayerFragmentArgs by navArgs()
     lateinit var playCheckbox: AppCompatCheckBox
     lateinit var favouriteCheckBox: AppCompatCheckBox
+    lateinit var checkBoxDownload : AppCompatCheckBox
     lateinit var progressBar: ProgressBar
     lateinit var currentTimeTextView: TextView
     lateinit var totalTimeTextView: TextView
@@ -66,6 +66,9 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
     lateinit var stopImageView: ImageView
 
     var mediaPlayerFragmentStateListener: MediaPlayerFragmentStateListener? = null
+
+    @Inject  lateinit var myDownloadManager: DownloadManager
+
 
     private val connection = object : ServiceConnection {
         // Called when the connection with the service is established
@@ -86,11 +89,16 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
                 if (args.surah.id > -1) {
 
                     mService?.setMediaItem(args.surah.audios)
-                    viewModel.isAudioItemExist(args.surah.audios[exoPlayer?.currentMediaItemIndex!!])
+                    val audioItem = args.surah.audios[exoPlayer?.currentMediaItemIndex!!]
+                    viewModel.isAudioItemExist(audioItem)
+                    viewModel.currentAudioItem = audioItem
                     exoPlayer?.playWhenReady = true
+
                 } else {
                     mService?.setMediaItem(mediaPlayerService.audioItems)
-                    viewModel.isAudioItemExist(mediaPlayerService.audioItems[exoPlayer?.currentMediaItemIndex!!])
+                    val audioItem = mediaPlayerService.audioItems[exoPlayer?.currentMediaItemIndex!!]
+                    viewModel.isAudioItemExist(audioItem)
+                    viewModel.currentAudioItem = audioItem
                     exoPlayer?.playWhenReady = true
                 }
             }
@@ -110,6 +118,7 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
     }
 
     override fun onCreateView(
@@ -117,9 +126,7 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_media_player, container, false)
-        // Inflate the layout for this fragment
-        //_binding = FragmentMediaPlayerBinding.inflate(inflater, container, false)
-        // val view = binding.root
+
         playCheckbox = view.findViewById(R.id.play_checkbox)
         progressBar = view.findViewById(R.id.progressBar)
         currentTimeTextView = view.findViewById(R.id.current_time_text_view)
@@ -134,13 +141,14 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
         closeImageView = view.findViewById(R.id.close_image_view)
         stopImageView = view.findViewById(R.id.stop_image)
         favouriteCheckBox = view.findViewById(R.id.favourite_checkbox)
+        checkBoxDownload = view.findViewById(R.id.checkBox_download)
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        context?.let {
+        context?.let { context ->
             playCheckbox.setOnClickListener {
 
                 exoPlayer?.let { player ->
@@ -195,6 +203,16 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
                 favouriteCheckBox.isChecked = it
             })
 
+            checkBoxDownload.setOnClickListener {
+
+            val downloadRequest: DownloadRequest = DownloadRequest.Builder(viewModel.currentAudioItem.title, Uri.parse(BuildConfig.AUDIO_URL+viewModel.currentAudioItem.url)).build()
+                            DownloadService.sendAddDownload(
+                                context,
+                                MediaDownloadService::class.java,
+                                downloadRequest,
+                                /* foreground= */ true)
+            }
+
         }
     }
 
@@ -218,18 +236,6 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
                 fragmentActivity,
                 Intent(fragmentActivity, MediaPlayerService::class.java)
             )
-
-            // Handler().postDelayed({
-//                exoPlayer = mService?.exoPlayer
-//
-//                exoPlayer?.addListener(this@MediaPlayerFragment)
-//                exoPlayer?.playWhenReady = true
-//                mService?.setMediaItem(args.surah.audios)
-//                viewModel.isAudioItemExist(args.surah.audios[exoPlayer?.currentMediaItemIndex!!])
-
-            // }, 1000)
-
-
         }
     }
 
@@ -343,7 +349,7 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
             Player.STATE_BUFFERING -> {
                 isPlaying = false
                 playCheckbox.isChecked = false
-
+                Timber.d("onPlaybackStateChanged ${Player.STATE_BUFFERING}")
             }
             Player.STATE_ENDED -> {
                 isPlaying = false
@@ -368,12 +374,12 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
                         viewModel.isAudioItemExist(mediaPlayerService.audioItems[exoPlayer?.currentMediaItemIndex!!])
                         context?.let { context ->
 
-                            val downloadRequest: DownloadRequest = DownloadRequest.Builder(audioItem.title, Uri.parse(audioItem.url)).build()
-                            DownloadService.sendAddDownload(
-                                context,
-                                MediaDownloadService::class.java,
-                                downloadRequest,
-                                /* foreground= */ true)
+//                            val downloadRequest: DownloadRequest = DownloadRequest.Builder(audioItem.title, Uri.parse(BuildConfig.AUDIO_URL+audioItem.url)).build()
+//                            DownloadService.sendAddDownload(
+//                                context,
+//                                MediaDownloadService::class.java,
+//                                downloadRequest,
+//                                /* foreground= */ true)
                         }
 
 

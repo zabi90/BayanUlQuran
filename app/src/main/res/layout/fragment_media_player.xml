@@ -7,23 +7,38 @@
     tools:context=".ui.fragments.MediaPlayerFragment">
 
     <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/checkBox_download"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:button="@drawable/selector_download_button"
+        android:checked="false"
+        android:src="@drawable/ic_baseline_cloud_download_24"
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintEnd_toStartOf="@+id/favourite_checkbox"
+        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="@+id/textView" />
+
+    <androidx.appcompat.widget.AppCompatCheckBox
         android:id="@+id/favourite_checkbox"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:button="@drawable/selector_favourite_button"
         android:checked="false"
         android:src="@drawable/ic_baseline_play_arrow"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView" />
 
     <ImageView
         android:id="@+id/close_image_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
         android:src="@drawable/ic_baseline_close"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView" />
 
     <TextView

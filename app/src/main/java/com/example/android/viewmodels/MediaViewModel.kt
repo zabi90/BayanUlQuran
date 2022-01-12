@@ -20,6 +20,7 @@ import javax.inject.Inject
 class MediaViewModel @Inject constructor(private val audioRepository: AudioRepository) :
     BaseViewModel() {
 
+    lateinit var currentAudioItem: AudioItem
     public var currentIndex = 0
     private val _isFavourite = MutableLiveData<Boolean>()
 
