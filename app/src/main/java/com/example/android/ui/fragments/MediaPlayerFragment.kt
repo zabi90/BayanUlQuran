@@ -15,31 +15,36 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatCheckBox
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.android.BuildConfig
 import com.example.android.R
 import com.example.android.base.BaseFragment
 import com.example.android.base.BaseViewModel
+import com.example.android.mangers.DownloadMediaManager
 import com.example.android.media.service.MediaDownloadService
 import com.example.android.media.service.MediaPlayerService
 import com.example.android.ui.activities.MainActivity
 import com.example.android.viewmodels.MediaViewModel
 import com.google.android.exoplayer2.ExoPlayer
+import com.google.android.exoplayer2.PlaybackException
 import com.google.android.exoplayer2.Player
+import com.google.android.exoplayer2.offline.Download
 import com.google.android.exoplayer2.offline.DownloadManager
 import com.google.android.exoplayer2.offline.DownloadRequest
 import com.google.android.exoplayer2.offline.DownloadService
 import com.google.android.exoplayer2.util.Util
+import com.google.android.material.progressindicator.CircularProgressIndicator
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MediaPlayerFragment : BaseFragment(), Player.Listener {
+class MediaPlayerFragment : BaseFragment(), Player.Listener,
+    DownloadMediaManager.DownloadMediaListener {
     private val viewModel: MediaViewModel by viewModels()
     private var exoPlayer: ExoPlayer? = null
     private val handler: Handler = Handler()
@@ -53,7 +58,7 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
     private val args: MediaPlayerFragmentArgs by navArgs()
     lateinit var playCheckbox: AppCompatCheckBox
     lateinit var favouriteCheckBox: AppCompatCheckBox
-    lateinit var checkBoxDownload : AppCompatCheckBox
+    lateinit var checkBoxDownload: AppCompatImageView
     lateinit var progressBar: ProgressBar
     lateinit var currentTimeTextView: TextView
     lateinit var totalTimeTextView: TextView
@@ -64,10 +69,13 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
     lateinit var backImageView: ImageView
     lateinit var closeImageView: ImageView
     lateinit var stopImageView: ImageView
+    lateinit var loadingProgressBar: ProgressBar
+    lateinit var downloadingProgressBar: CircularProgressIndicator
 
     var mediaPlayerFragmentStateListener: MediaPlayerFragmentStateListener? = null
 
-    @Inject  lateinit var myDownloadManager: DownloadManager
+    @Inject
+    lateinit var downloadMediaManager: DownloadMediaManager
 
 
     private val connection = object : ServiceConnection {
@@ -96,7 +104,8 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
 
                 } else {
                     mService?.setMediaItem(mediaPlayerService.audioItems)
-                    val audioItem = mediaPlayerService.audioItems[exoPlayer?.currentMediaItemIndex!!]
+                    val audioItem =
+                        mediaPlayerService.audioItems[exoPlayer?.currentMediaItemIndex!!]
                     viewModel.isAudioItemExist(audioItem)
                     viewModel.currentAudioItem = audioItem
                     exoPlayer?.playWhenReady = true
@@ -115,12 +124,6 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
         }
     }
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -129,6 +132,8 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
 
         playCheckbox = view.findViewById(R.id.play_checkbox)
         progressBar = view.findViewById(R.id.progressBar)
+        downloadingProgressBar = view.findViewById(R.id.progress_bar_download)
+        loadingProgressBar = view.findViewById(R.id.loading_progress)
         currentTimeTextView = view.findViewById(R.id.current_time_text_view)
         totalTimeTextView = view.findViewById(R.id.total_time_text_view)
         titleTextView = view.findViewById(R.id.title_textView)
@@ -141,7 +146,7 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
         closeImageView = view.findViewById(R.id.close_image_view)
         stopImageView = view.findViewById(R.id.stop_image)
         favouriteCheckBox = view.findViewById(R.id.favourite_checkbox)
-        checkBoxDownload = view.findViewById(R.id.checkBox_download)
+        checkBoxDownload = view.findViewById(R.id.image_view_download)
         return view
     }
 
@@ -149,6 +154,9 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
         super.onViewCreated(view, savedInstanceState)
 
         context?.let { context ->
+
+
+
             playCheckbox.setOnClickListener {
 
                 exoPlayer?.let { player ->
@@ -199,25 +207,19 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
             }
 
 
-            viewModel.isFavourite.observe(viewLifecycleOwner, Observer {
+            viewModel.isFavourite.observe(viewLifecycleOwner, {
                 favouriteCheckBox.isChecked = it
             })
 
             checkBoxDownload.setOnClickListener {
-
-            val downloadRequest: DownloadRequest = DownloadRequest.Builder(viewModel.currentAudioItem.title, Uri.parse(BuildConfig.AUDIO_URL+viewModel.currentAudioItem.url)).build()
-                            DownloadService.sendAddDownload(
-                                context,
-                                MediaDownloadService::class.java,
-                                downloadRequest,
-                                /* foreground= */ true)
+                downloadMediaManager.sendRequest(viewModel.currentAudioItem)
             }
 
         }
     }
 
     override fun setListeners() {
-
+        downloadMediaManager.downloadMediaListener = this
     }
 
     override fun setViewModel(): BaseViewModel? {
@@ -241,15 +243,8 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
 
     override fun onStop() {
         super.onStop()
-        activity?.let {
-            it.unbindService(connection)
-        }
-
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        // _binding = null
+        activity
+            ?.unbindService(connection)
     }
 
     override fun onDetach() {
@@ -260,7 +255,7 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if(context is MediaPlayerFragmentStateListener){
+        if (context is MediaPlayerFragmentStateListener) {
             mediaPlayerFragmentStateListener = context
         }
     }
@@ -372,17 +367,6 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
                         val audioItem = mediaPlayerService.audioItems[it.currentMediaItemIndex]
                         titleTextView.text = audioItem.title
                         viewModel.isAudioItemExist(mediaPlayerService.audioItems[exoPlayer?.currentMediaItemIndex!!])
-                        context?.let { context ->
-
-//                            val downloadRequest: DownloadRequest = DownloadRequest.Builder(audioItem.title, Uri.parse(BuildConfig.AUDIO_URL+audioItem.url)).build()
-//                            DownloadService.sendAddDownload(
-//                                context,
-//                                MediaDownloadService::class.java,
-//                                downloadRequest,
-//                                /* foreground= */ true)
-                        }
-
-
                         Timber.d("args.surah.audios ${mediaPlayerService.audioItems.size} and it.currentMediaItemIndex ${it.currentMediaItemIndex}")
                     }
 
@@ -413,6 +397,53 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener {
             isPlaying = false
             playCheckbox.isChecked = false
         }
+    }
+
+    override fun onPlayerError(error: PlaybackException) {
+        super.onPlayerError(error)
+       // toast(error.cause?.message)
+        loadingProgressBar.visibility =  View.GONE
+    }
+
+    override fun onIsLoadingChanged(isLoading: Boolean) {
+        super.onIsLoadingChanged(isLoading)
+        if(isLoading){
+            loadingProgressBar.visibility = View.VISIBLE
+        }else{
+            loadingProgressBar.visibility =  View.GONE
+        }
+    }
+
+
+
+    override fun onProgressChanged(download: Download, progress: Long) {
+        downloadingProgressBar.visibility = View.VISIBLE
+        downloadingProgressBar.setProgressCompat(progress.toInt(), true)
+
+    }
+
+    override fun onError(download: Download, finalException: Exception) {
+
+    }
+
+    override fun onCompleted(download: Download) {
+
+        if(downloadMediaManager.isMediaDownloaded(viewModel.currentAudioItem)){
+            downloadingProgressBar.visibility = View.GONE
+            checkBoxDownload.setImageResource(R.drawable.ic_baseline_cloud_done_24)
+        }
+    }
+
+    override fun onPaused() {
+
+    }
+
+    override fun onResumed() {
+
+    }
+
+    override fun onRemoved(download: Download) {
+
     }
 
     interface MediaPlayerFragmentStateListener {

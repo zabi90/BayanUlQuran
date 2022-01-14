@@ -2,6 +2,7 @@ package com.example.android.injection.modules
 
 import android.content.Context
 import com.example.android.R
+import com.example.android.mangers.DownloadMediaManager
 import com.google.android.exoplayer2.database.StandaloneDatabaseProvider
 import com.google.android.exoplayer2.offline.DownloadManager
 import com.google.android.exoplayer2.source.SingleSampleMediaSource
@@ -78,5 +79,10 @@ class MediaPlayerModule {
     @Singleton
     fun getNotification(@ApplicationContext applicationContext: Context):DownloadNotificationHelper{
        return DownloadNotificationHelper(applicationContext,"Media Downloader")
+    }
+
+    @Provides
+    fun getDownloadMediaManager(@ApplicationContext applicationContext: Context,downloadManager: DownloadManager ) : DownloadMediaManager{
+        return  DownloadMediaManager(applicationContext,downloadManager)
     }
 }

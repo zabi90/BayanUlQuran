@@ -6,18 +6,41 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.MediaPlayerFragment">
 
-    <androidx.appcompat.widget.AppCompatCheckBox
-        android:id="@+id/checkBox_download"
+    <FrameLayout
+        android:id="@+id/dowload_layout"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:button="@drawable/selector_download_button"
-        android:checked="false"
-        android:src="@drawable/ic_baseline_cloud_download_24"
         app:layout_constraintBottom_toBottomOf="@+id/textView"
         app:layout_constraintEnd_toStartOf="@+id/favourite_checkbox"
         app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toTopOf="@+id/textView" />
+        app:layout_constraintTop_toTopOf="@+id/textView">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_view_download"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:padding="8dp"
+            android:src="@drawable/ic_baseline_cloud_download_24"
+            app:layout_constraintBottom_toBottomOf="@+id/textView"
+            app:layout_constraintEnd_toStartOf="@+id/favourite_checkbox"
+            app:layout_constraintHorizontal_bias="0.8"
+            app:layout_constraintStart_toEndOf="@+id/textView"
+            app:layout_constraintTop_toTopOf="@+id/textView" />
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/progress_bar_download"
+            android:visibility="gone"
+            tools:visibility="visible"
+            android:progress="100"
+            app:indicatorColor="@color/md_theme_dark_background"
+            app:trackColor="@color/md_theme_dark_onBackground"
+            app:indicatorSize="35dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+    </FrameLayout>
+
 
     <androidx.appcompat.widget.AppCompatCheckBox
         android:id="@+id/favourite_checkbox"
@@ -70,6 +93,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:srcCompat="@drawable/icon" />
+
+        <ProgressBar
+            android:id="@+id/loading_progress"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|bottom"
+            android:indeterminate="true"
+            android:visibility="gone"
+            tools:visibility="visible" />
     </com.google.android.material.card.MaterialCardView>
 
 

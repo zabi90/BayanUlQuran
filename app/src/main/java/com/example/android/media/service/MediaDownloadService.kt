@@ -28,32 +28,6 @@ class MediaDownloadService  : DownloadService(312, DEFAULT_FOREGROUND_NOTIFICATI
 
 
     override fun getDownloadManager(): DownloadManager {
-
-        myDownloadManager.addListener(object : DownloadManager.Listener {
-
-            override fun onDownloadRemoved(downloadManager: DownloadManager, download: Download) {
-                Toast.makeText(this@MediaDownloadService, "Deleted", Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onDownloadsPausedChanged(downloadManager: DownloadManager, downloadsPaused: Boolean) {
-                if (downloadsPaused){
-                    Toast.makeText(this@MediaDownloadService, "paused", Toast.LENGTH_SHORT).show()
-                } else{
-                    Toast.makeText(this@MediaDownloadService, "resumed", Toast.LENGTH_SHORT).show()
-                }
-
-            }
-
-            override fun onDownloadChanged(
-                downloadManager: DownloadManager,
-                download: Download,
-                finalException: Exception?
-            ) {
-                Toast.makeText(this@MediaDownloadService, "percentDownloaded ${download.percentDownloaded } , finalException ${finalException?.message} ", Toast.LENGTH_SHORT).show()
-            }
-
-        })
-
       return myDownloadManager
     }
 
