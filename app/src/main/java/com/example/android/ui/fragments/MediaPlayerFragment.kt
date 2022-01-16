@@ -4,6 +4,7 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
@@ -17,12 +18,14 @@ import android.widget.TextView
 import androidx.appcompat.widget.AppCompatCheckBox
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.android.BuildConfig
 import com.example.android.R
 import com.example.android.base.BaseFragment
 import com.example.android.base.BaseViewModel
+import com.example.android.extensions.showSnackBar
 import com.example.android.mangers.DownloadMediaManager
 import com.example.android.media.service.MediaDownloadService
 import com.example.android.media.service.MediaPlayerService
@@ -70,7 +73,7 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener,
     lateinit var closeImageView: ImageView
     lateinit var stopImageView: ImageView
     lateinit var loadingProgressBar: ProgressBar
-    lateinit var downloadingProgressBar: CircularProgressIndicator
+    lateinit var downloadingProgressBar: ProgressBar
 
     var mediaPlayerFragmentStateListener: MediaPlayerFragmentStateListener? = null
 
@@ -110,6 +113,10 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener,
                     viewModel.currentAudioItem = audioItem
                     exoPlayer?.playWhenReady = true
                 }
+
+                viewModel.isAudioDownloaded()
+
+
             }
             mBound = true
             mediaPlayerFragmentStateListener?.onServiceContected()
@@ -154,8 +161,6 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener,
         super.onViewCreated(view, savedInstanceState)
 
         context?.let { context ->
-
-
 
             playCheckbox.setOnClickListener {
 
@@ -213,13 +218,23 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener,
 
             checkBoxDownload.setOnClickListener {
                 downloadMediaManager.sendRequest(viewModel.currentAudioItem)
+                checkBoxDownload.isEnabled = false
             }
-
         }
     }
 
     override fun setListeners() {
+
         downloadMediaManager.downloadMediaListener = this
+
+        viewModel.isDownloaded.observe(this, {
+            if(it){
+                downloadingProgressBar.visibility = View.GONE
+                checkBoxDownload.setImageResource(R.drawable.ic_baseline_cloud_done_24)
+                checkBoxDownload.isEnabled = false
+            }
+        })
+
     }
 
     override fun setViewModel(): BaseViewModel? {
@@ -403,6 +418,7 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener,
         super.onPlayerError(error)
        // toast(error.cause?.message)
         loadingProgressBar.visibility =  View.GONE
+        showSnackBar("Error while playing.",Color.RED)
     }
 
     override fun onIsLoadingChanged(isLoading: Boolean) {
@@ -418,20 +434,16 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener,
 
     override fun onProgressChanged(download: Download, progress: Long) {
         downloadingProgressBar.visibility = View.VISIBLE
-        downloadingProgressBar.setProgressCompat(progress.toInt(), true)
-
     }
 
     override fun onError(download: Download, finalException: Exception) {
-
+        showSnackBar("Error while downloading.")
     }
 
     override fun onCompleted(download: Download) {
 
-        if(downloadMediaManager.isMediaDownloaded(viewModel.currentAudioItem)){
-            downloadingProgressBar.visibility = View.GONE
-            checkBoxDownload.setImageResource(R.drawable.ic_baseline_cloud_done_24)
-        }
+        showSnackBar("Downloading completed!")
+        viewModel.isAudioDownloaded()
     }
 
     override fun onPaused() {

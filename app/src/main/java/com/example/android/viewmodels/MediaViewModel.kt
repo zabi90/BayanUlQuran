@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.android.base.BaseViewModel
+import com.example.android.mangers.DownloadMediaManager
 import com.example.android.models.AudioItem
 import com.example.android.repositories.AudioRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,22 +18,28 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
-class MediaViewModel @Inject constructor(private val audioRepository: AudioRepository) :
+class MediaViewModel @Inject constructor(private val audioRepository: AudioRepository,private val downloadMediaManager : DownloadMediaManager) :
     BaseViewModel() {
 
     lateinit var currentAudioItem: AudioItem
-    public var currentIndex = 0
+
+    var currentIndex = 0
+
     private val _isFavourite = MutableLiveData<Boolean>()
 
     val isFavourite: LiveData<Boolean> = _isFavourite
+
+    private val _isDownloaded = MutableLiveData<Boolean>()
+
+    val isDownloaded: LiveData<Boolean> = _isDownloaded
 
     fun insertFavouriteSurahList(audioItem: AudioItem) {
 
         viewModelScope.launch {
             try {
-                if(_isFavourite.value != null && _isFavourite.value!!){
+                if (_isFavourite.value != null && _isFavourite.value!!) {
                     audioRepository.deleteFavourite(audioItem)
-                }else{
+                } else {
                     audioRepository.insertFavourite(audioItem)
                 }
 
@@ -42,7 +49,6 @@ class MediaViewModel @Inject constructor(private val audioRepository: AudioRepos
             }
         }
     }
-
 
     fun isAudioItemExist(audioItem: AudioItem) {
 
@@ -64,5 +70,9 @@ class MediaViewModel @Inject constructor(private val audioRepository: AudioRepos
                         _isFavourite.postValue(false)
                 }
         }
+    }
+
+    fun isAudioDownloaded(){
+        _isDownloaded.postValue(downloadMediaManager.isMediaDownloaded(currentAudioItem))
     }
 }

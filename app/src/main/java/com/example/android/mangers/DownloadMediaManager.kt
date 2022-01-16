@@ -54,7 +54,7 @@ class DownloadMediaManager @Inject constructor(
         if (downloadCursor.moveToFirst()) {
             do {
                 val id = downloadCursor.download.request.id
-                if (audioItem.title.contentEquals(id, ignoreCase = true)) {
+                if (audioItem.title.contentEquals(id, ignoreCase = true) && (downloadCursor.download.bytesDownloaded == downloadCursor.download.contentLength)) {
                     isExist = true
                     break
                 }
