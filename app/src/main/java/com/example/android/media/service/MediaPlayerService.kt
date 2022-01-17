@@ -44,7 +44,7 @@ class MediaPlayerService : Service() {
 
   @Inject lateinit var downloadCache : SimpleCache
 
-    private lateinit var playerNotificationManager: PlayerNotificationManager
+  private var playerNotificationManager: PlayerNotificationManager? = null
 
     override fun onCreate() {
         super.onCreate()
@@ -160,7 +160,7 @@ class MediaPlayerService : Service() {
             })
             .build()
 
-        playerNotificationManager.setPlayer(exoPlayer)
+        playerNotificationManager?.setPlayer(exoPlayer)
     }
 
     inner class LocalBinder : Binder() {
@@ -172,7 +172,7 @@ class MediaPlayerService : Service() {
 
     override fun onDestroy() {
         exoPlayer.release()
-        playerNotificationManager.setPlayer(null)
+        playerNotificationManager?.setPlayer(null)
         super.onDestroy()
     }
 

@@ -1,6 +1,8 @@
 package com.example.android.ui.fragments
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -117,6 +119,23 @@ class HomeFragment : BaseFragment() {
         binding.swipeRefreshLayout.setOnRefreshListener {
             viewModel.loadSurahList(shouldRefresh = true)
         }
+
+        binding.searchTextInputLayout.editText?.addTextChangedListener(object : TextWatcher {
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                p0?.let {
+                    adapter?.searchSurah(it.toString())
+                }
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+
+            }
+        })
     }
 
     override fun setViewModel(): BaseViewModel {

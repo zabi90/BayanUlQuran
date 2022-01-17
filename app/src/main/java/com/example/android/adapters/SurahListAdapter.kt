@@ -30,6 +30,20 @@ class SurahListAdapter (context: Context) : BaseRecyclerAdapter<Surah, SurahList
         }
     }
 
+    fun searchSurah(query: String){
+        if(query.isEmpty()){
+            items.addAll(tempList)
+        }else{
+            items.clear()
+            tempList.forEachIndexed { index, surah ->
+
+                if (surah.title.contains(query)){
+                    items.add(surah)
+                }
+            }
+            notifyDataSetChanged()
+        }
+    }
     class SurahListHolder(view:View) : RecyclerView.ViewHolder(view){
         val binding = ItemMediaBinding.bind(view)
     }
