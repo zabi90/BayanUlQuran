@@ -383,8 +383,10 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener,
 
                     mService?.let { mediaPlayerService ->
                         val audioItem = mediaPlayerService.audioItems[it.currentMediaItemIndex]
+                        viewModel.currentAudioItem = audioItem
                         titleTextView.text = audioItem.title
                         viewModel.isAudioItemExist(mediaPlayerService.audioItems[exoPlayer?.currentMediaItemIndex!!])
+                        viewModel.isAudioDownloaded()
                         Timber.d("args.surah.audios ${mediaPlayerService.audioItems.size} and it.currentMediaItemIndex ${it.currentMediaItemIndex}")
                     }
 
@@ -406,7 +408,10 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener,
             exoPlayer?.let {
                 mService?.let { mediaPlayerService ->
                     viewModel.currentIndex = it.currentMediaItemIndex
-                    viewModel.isAudioItemExist(mediaPlayerService.audioItems[exoPlayer?.currentMediaItemIndex!!])
+                    val audioItem = mediaPlayerService.audioItems[it.currentMediaItemIndex]
+                    viewModel.currentAudioItem = audioItem
+                    viewModel.isAudioItemExist(audioItem)
+                    viewModel.isAudioDownloaded()
                 }
 
             }
