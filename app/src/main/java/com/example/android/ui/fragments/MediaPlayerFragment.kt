@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
 import android.graphics.Color
-import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.IBinder
@@ -18,16 +17,13 @@ import android.widget.TextView
 import androidx.appcompat.widget.AppCompatCheckBox
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.example.android.BuildConfig
 import com.example.android.R
 import com.example.android.base.BaseFragment
 import com.example.android.base.BaseViewModel
 import com.example.android.extensions.showSnackBar
 import com.example.android.mangers.DownloadMediaManager
-import com.example.android.media.service.MediaDownloadService
 import com.example.android.media.service.MediaPlayerService
 import com.example.android.ui.activities.MainActivity
 import com.example.android.viewmodels.MediaViewModel
@@ -35,11 +31,7 @@ import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.PlaybackException
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.offline.Download
-import com.google.android.exoplayer2.offline.DownloadManager
-import com.google.android.exoplayer2.offline.DownloadRequest
-import com.google.android.exoplayer2.offline.DownloadService
 import com.google.android.exoplayer2.util.Util
-import com.google.android.material.progressindicator.CircularProgressIndicator
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
@@ -227,14 +219,25 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener,
 
         downloadMediaManager.downloadMediaListener = this
 
-        viewModel.isDownloaded.observe(this, {
-            if(it){
-                downloadingProgressBar.visibility = View.GONE
-                checkBoxDownload.setImageResource(R.drawable.ic_baseline_cloud_done_24)
-                checkBoxDownload.isEnabled = false
+        viewModel.isDownloaded.observe(this, { status ->
+
+            when (status) {
+                Download.STATE_COMPLETED -> {
+                    downloadingProgressBar.visibility = View.GONE
+                    checkBoxDownload.setImageResource(R.drawable.ic_baseline_cloud_done_24)
+                    checkBoxDownload.isEnabled = false
+                }
+                Download.STATE_DOWNLOADING -> {
+                    downloadingProgressBar.visibility = View.VISIBLE
+                    checkBoxDownload.setImageResource(R.drawable.ic_baseline_cloud_download_24)
+                    checkBoxDownload.isEnabled = false
+                }
+                else -> {
+                    checkBoxDownload.setImageResource(R.drawable.ic_baseline_cloud_download_24)
+                    checkBoxDownload.isEnabled = true
+                }
             }
         })
-
     }
 
     override fun setViewModel(): BaseViewModel? {
@@ -416,20 +419,19 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener,
 
     override fun onPlayerError(error: PlaybackException) {
         super.onPlayerError(error)
-       // toast(error.cause?.message)
-        loadingProgressBar.visibility =  View.GONE
-        showSnackBar("Error while playing.",Color.RED)
+        // toast(error.cause?.message)
+        loadingProgressBar.visibility = View.GONE
+        showSnackBar("Error while playing.", Color.RED)
     }
 
     override fun onIsLoadingChanged(isLoading: Boolean) {
         super.onIsLoadingChanged(isLoading)
-        if(isLoading){
+        if (isLoading) {
             loadingProgressBar.visibility = View.VISIBLE
-        }else{
-            loadingProgressBar.visibility =  View.GONE
+        } else {
+            loadingProgressBar.visibility = View.GONE
         }
     }
-
 
 
     override fun onProgressChanged(download: Download, progress: Long) {
@@ -437,12 +439,12 @@ class MediaPlayerFragment : BaseFragment(), Player.Listener,
     }
 
     override fun onError(download: Download, finalException: Exception) {
-        showSnackBar("Error while downloading.")
+        showSnackBar("Error while downloading audio : ${download.request.id}.")
     }
 
     override fun onCompleted(download: Download) {
 
-        showSnackBar("Downloading completed!")
+        showSnackBar("Downloading completed : audio : ${download.request.id}.")
         viewModel.isAudioDownloaded()
     }
 

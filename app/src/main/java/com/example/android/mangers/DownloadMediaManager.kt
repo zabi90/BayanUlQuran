@@ -45,17 +45,17 @@ class DownloadMediaManager @Inject constructor(
 
     }
 
-    fun isMediaDownloaded(audioItem: AudioItem): Boolean {
+    fun isMediaDownloaded(audioItem: AudioItem): Int {
 
-        var isExist = false
+        var isExist = -1
 
         val downloadCursor = downloadManager.downloadIndex.getDownloads()
 
         if (downloadCursor.moveToFirst()) {
             do {
                 val id = downloadCursor.download.request.id
-                if (audioItem.title.contentEquals(id, ignoreCase = true) && (downloadCursor.download.bytesDownloaded == downloadCursor.download.contentLength)) {
-                    isExist = true
+                if (audioItem.title.contentEquals(id, ignoreCase = true)) {
+                    isExist = downloadCursor.download.state
                     break
                 }
             } while (downloadCursor.moveToNext())
@@ -99,4 +99,6 @@ class DownloadMediaManager @Inject constructor(
          fun onResumed()
          fun onRemoved(download: Download)
      }
+
+
 }

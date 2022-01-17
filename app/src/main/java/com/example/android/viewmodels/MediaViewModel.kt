@@ -29,9 +29,9 @@ class MediaViewModel @Inject constructor(private val audioRepository: AudioRepos
 
     val isFavourite: LiveData<Boolean> = _isFavourite
 
-    private val _isDownloaded = MutableLiveData<Boolean>()
+    private val _isDownloaded = MutableLiveData<Int>()
 
-    val isDownloaded: LiveData<Boolean> = _isDownloaded
+    val isDownloaded: LiveData<Int> = _isDownloaded
 
     fun insertFavouriteSurahList(audioItem: AudioItem) {
 
