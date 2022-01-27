@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.android.R
 import com.example.android.base.BaseRecyclerAdapter
 import com.example.android.databinding.ItemMediaBinding
-import com.example.android.models.AudioItem
 import com.example.android.models.Surah
 
 class SurahListAdapter (context: Context) : BaseRecyclerAdapter<Surah, SurahListAdapter.SurahListHolder>(context) {
@@ -31,18 +30,22 @@ class SurahListAdapter (context: Context) : BaseRecyclerAdapter<Surah, SurahList
     }
 
     fun searchSurah(query: String){
+
         if(query.isEmpty()){
+            items.clear()
             items.addAll(tempList)
+
         }else{
+
             items.clear()
             tempList.forEachIndexed { index, surah ->
 
-                if (surah.title.contains(query)){
+                if (surah.title.contains(query,ignoreCase = true)){
                     items.add(surah)
                 }
             }
-            notifyDataSetChanged()
         }
+        notifyDataSetChanged()
     }
     class SurahListHolder(view:View) : RecyclerView.ViewHolder(view){
         val binding = ItemMediaBinding.bind(view)

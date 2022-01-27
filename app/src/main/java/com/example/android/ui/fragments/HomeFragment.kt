@@ -22,6 +22,7 @@ import com.example.android.base.BaseFragment
 import com.example.android.base.BaseViewModel
 import com.example.android.base.OnItemSelectListener
 import com.example.android.databinding.FragmentHomeBinding
+import com.example.android.extensions.clear
 import com.example.android.extensions.toast
 import com.example.android.models.AudioItem
 import com.example.android.models.Surah
@@ -136,6 +137,9 @@ class HomeFragment : BaseFragment() {
 
             }
         })
+        binding.searchTextInputLayout.setEndIconOnClickListener{
+            binding.searchTextInputLayout.clear()
+        }
     }
 
     override fun setViewModel(): BaseViewModel {
