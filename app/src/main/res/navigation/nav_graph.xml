@@ -38,4 +38,9 @@
             android:name="surah"
             app:argType="com.example.android.models.Surah" />
     </fragment>
+    <fragment
+        android:id="@+id/moreFragment"
+        android:name="com.example.android.ui.fragments.MoreFragment"
+        android:label="fragment_more"
+        tools:layout="@layout/fragment_more" />
 </navigation>

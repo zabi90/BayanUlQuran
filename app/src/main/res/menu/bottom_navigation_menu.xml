@@ -15,11 +15,10 @@
         android:icon="@drawable/ic_baseline_favorite"
         android:title="@string/text_favourite" />
 
-<!--    <item-->
-<!--        android:id="@+id/moreFragment"-->
-<!--        android:enabled="true"-->
-<!--        android:icon="@drawable/ic_baseline_more"-->
-<!--        android:title="@string/text_more" />-->
-
+    <item
+        android:id="@+id/moreFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_more"
+        android:title="@string/text_more" />
 
 </menu>

@@ -15,4 +15,42 @@
     <string name="channel_download_description">Banyul Quran downloading audio</string>
     <string name="channel_download_name">Bayan ul Quran Downloader</string>
 
+
+
+    <!-- Description of the app -->
+    <string name="app_description">
+        The "Dr. Israr Ahmed Bayan ul Quran" app offers a comprehensive collection of enlightening Quran lectures by the renowned Islamic scholar, Dr. Israr Ahmed. Dive into the profound wisdom and spiritual insights of the Quran through his powerful and thought-provoking sermons. With this app, you can access a treasure trove of audio recordings featuring Dr. Israr Ahmed\'s in-depth commentary on the Quran, presented with remarkable clarity and passion.
+    </string>
+
+    <!-- Key Features -->
+    <string name="key_features">Key Features:</string>
+
+    <string name="feature_one">
+        1. Extensive Quranic Lectures: Access a vast library of Quranic lectures by Dr. Israr Ahmed, covering various chapters and verses of the Quran. Explore his profound interpretations and gain a deeper understanding of the Quran\'s teachings.
+    </string>
+
+    <string name="feature_two">
+        2. User-Friendly Interface: Navigate the app with ease, thanks to its intuitive and user-friendly interface. Find, select, and play the specific Quran lectures you\'re interested in effortlessly.
+    </string>
+
+    <string name="feature_three">
+        3. Offline Access: Download your favorite lectures for offline listening, ensuring you have access to Dr. Israr Ahmed\'s valuable insights anytime, anywhere, without an internet connection.
+    </string>
+
+    <string name="feature_four">
+        4. Search Functionality: Easily locate specific topics, verses, or surahs within the lectures using the search feature, making it simple to find the guidance you seek.
+    </string>
+
+    <string name="feature_five">
+        5. Bookmark and Favorites: Bookmark your favorite lectures or create a personalized list of your most-loved sermons for quick access.
+    </string>
+
+    <string name="feature_six">
+        6. High-Quality Audio: Enjoy high-quality audio recordings that capture the essence and depth of Dr. Israr Ahmed\'s lectures, allowing for a profound listening experience.
+    </string>
+
+    <string name="feature_seven">
+        7. Regular Updates: Stay connected with the latest additions to the lecture collection as new content is periodically added to the app.
+    </string>
+
 </resources>
