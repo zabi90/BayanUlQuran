@@ -4,11 +4,15 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.IBinder
 import android.view.View
 import androidx.activity.viewModels
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
@@ -32,7 +36,9 @@ import timber.log.Timber
 @AndroidEntryPoint
 class MainActivity : BaseActivity(), Player.Listener,
     MediaPlayerFragment.MediaPlayerFragmentStateListener {
-
+    companion object {
+        const val NOTIFICATION_PERMISSION_REQUEST_CODE = 1
+    }
 
     private lateinit var binding: ActivityMainBinding
     private var exoPlayer: ExoPlayer? = null
@@ -59,6 +65,11 @@ class MainActivity : BaseActivity(), Player.Listener,
         //binding.titleTextView.text = it.toString()
         // })
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) { // Android 13+
+            if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.POST_NOTIFICATIONS), NOTIFICATION_PERMISSION_REQUEST_CODE)
+            }
+        }
 
     }
 

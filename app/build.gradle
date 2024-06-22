@@ -14,8 +14,8 @@ android {
         applicationId "com.bayan.ul.quran"
         minSdk 21
         targetSdk 34
-        versionCode 2
-        versionName "1.1.0"
+        versionCode 3
+        versionName "1.1.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -34,8 +34,8 @@ android {
             // Assigns this product flavor to the "version" flavor dimension.
             // This property is optional if you are using only one dimension.
             dimension "backend"
-            versionCode 2
-            versionName "1.1.0"
+            versionCode 3
+            versionName "1.1.1"
 
             buildConfigField 'boolean', 'IS_DEVELOPMENT', "false"
             buildConfigField 'String', 'BASE_URL', "\"https://private-7dd9fe-bayanulquran.apiary-mock.com/\""
@@ -169,4 +169,11 @@ dependencies {
     //exoplayer
     implementation 'com.google.android.exoplayer:exoplayer-core:2.19.1'
     implementation 'com.google.android.exoplayer:exoplayer-ui:2.19.1'
+
+    // This dependency is downloaded from the Google’s Maven repository.
+    // So, make sure you also include that repository in your project's build.gradle file.
+    implementation 'com.google.android.play:feature-delivery:2.1.0'
+
+    // For Kotlin users, also add the Kotlin extensions library for Play Feature Delivery:
+    implementation 'com.google.android.play:feature-delivery-ktx:2.1.0'
 }
